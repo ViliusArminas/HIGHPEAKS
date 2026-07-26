@@ -81,10 +81,10 @@ Useful flags:
 2. In the repo settings → **Pages**, set the source to the `docs/` folder on
    your default branch. GitHub will give you a free URL like
    `https://yourusername.github.io/highpeaks-triathlon/`.
-3. The included workflow (`.github/workflows/scrape.yml`) runs every Monday
+3. The included workflow (`.github/workflows/scrape.yml`) runs every 6 hours
    and re-commits fresh data automatically. You can also trigger it manually
    from the **Actions** tab (`Run workflow` button) any time — e.g. right
-   after this first push, so you don't have to wait a week for real data.
+   after this first push, so you don't have to wait for the next scheduled run.
 4. No API keys or secrets needed — it only calls a public read-only endpoint.
 
 ## Known caveats / things worth double-checking
