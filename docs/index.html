@@ -185,6 +185,25 @@
   .paid-badge.no{background:rgba(224,149,78,0.18);color:var(--bike);}
   .no-upcoming{color:var(--text-dim);font-size:13px;}
 
+  .lb-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;
+  }
+  .lb-panel{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;
+  }
+  .lb-panel h3{font-family:'Space Grotesk',sans-serif;font-size:16px;margin:0 0 4px;}
+  .lb-panel p{color:var(--text-dim);font-size:12px;margin:0 0 14px;}
+  .lb-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .lb-table td{padding:8px 4px;border-bottom:1px solid var(--line);}
+  .lb-table tr:last-child td{border-bottom:none;}
+  .lb-rank{
+    font-family:'JetBrains Mono',monospace;color:var(--text-dim);width:22px;font-weight:600;
+  }
+  .lb-rank.podium{color:var(--accent-warm);}
+  .lb-name{font-weight:600;}
+  .lb-value{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent-warm);white-space:nowrap;}
+
   footer{
     margin-top:40px;color:var(--text-dim);font-size:12px;text-align:center;
   }
@@ -213,6 +232,7 @@
 
   <div class="tabs">
     <button type="button" class="tab-btn active" id="tabBtnResults" data-tab="results">Results</button>
+    <button type="button" class="tab-btn" id="tabBtnLeaderboards" data-tab="leaderboards">Leaderboards</button>
     <button type="button" class="tab-btn" id="tabBtnUpcoming" data-tab="upcoming">Upcoming races</button>
   </div>
 
@@ -234,6 +254,13 @@
     </span>
     <span id="upcomingOnlyControls" style="display:none;">
       <select id="upcomingDistanceFilter"><option value="">All distances</option></select>
+    </span>
+    <span id="leaderboardsOnlyControls" style="display:none;">
+      <select id="lbGenderFilter">
+        <option value="">All genders</option>
+        <option value="V">Male</option>
+        <option value="M">Female</option>
+      </select>
     </span>
   </div>
 
@@ -259,6 +286,10 @@
 
   <div id="upcomingView" style="display:none;">
     <div id="upcomingSection"></div>
+  </div>
+
+  <div id="leaderboardsView" style="display:none;">
+    <div id="leaderboardsSection"></div>
   </div>
 
   <footer>
@@ -301,6 +332,19 @@ function stageLabel(stageId) {
   return stageNames[stageId] || `Stage ${stageId}`;
 }
 
+function isTop3(v) {
+  return ['1', '2', '3'].includes(String(v));
+}
+
+// A result is a podium finish if either the overall or the gender position is top 3.
+function isPodiumRow(r) {
+  return isTop3(r['POS']) || isTop3(r['GENDER POS']);
+}
+
+function isAgPodiumRow(r) {
+  return isTop3(r['GROUP POS']);
+}
+
 // The site's export format changed over time, so some fields show up under
 // different keys depending on when the row was scraped. Normalize to one key.
 function normalizeRow(r) {
@@ -334,6 +378,7 @@ async function loadData() {
   populateStageFilter();
   render();
   renderUpcoming();
+  renderLeaderboards();
   fetchScrapedAt();
 }
 
@@ -432,8 +477,8 @@ function filteredRows() {
 function renderStats(rows) {
   const stats = document.getElementById('stats');
   const athleteCount = new Set(rows.map(r => `${r['FIRST NAME']}|${r['LAST NAME']}`)).size;
-  const podiums = rows.filter(r => ['1','2','3'].includes(String(r['POS']))).length;
-  const agPodiums = rows.filter(r => ['1','2','3'].includes(String(r['GROUP POS']))).length;
+  const podiums = rows.filter(isPodiumRow).length;
+  const agPodiums = rows.filter(isAgPodiumRow).length;
   const clubPoints = rows.reduce((sum, r) => sum + (parseInt(r['CLUB POINTS'], 10) || 0), 0);
   stats.innerHTML = `
     <div class="stat"><div class="n">${rows.length}</div><div class="l">Results</div></div>
@@ -632,19 +677,85 @@ function renderUpcoming() {
   `;
 }
 
-
-
-function switchTab(tab) {
-  const isResults = tab === 'results';
-  document.getElementById('tabBtnResults').classList.toggle('active', isResults);
-  document.getElementById('tabBtnUpcoming').classList.toggle('active', !isResults);
-  document.getElementById('resultsView').style.display = isResults ? '' : 'none';
-  document.getElementById('upcomingView').style.display = isResults ? 'none' : '';
-  document.getElementById('resultsOnlyControls').style.display = isResults ? 'contents' : 'none';
-  document.getElementById('upcomingOnlyControls').style.display = isResults ? 'none' : 'contents';
+function lbTable(title, subtitle, items, valueFn) {
+  if (!items.length) {
+    return `
+    <div class="lb-panel">
+      <h3>${title}</h3>
+      <p>${subtitle}</p>
+      <p class="no-upcoming">No data for this filter.</p>
+    </div>`;
+  }
+  return `
+  <div class="lb-panel">
+    <h3>${title}</h3>
+    <p>${subtitle}</p>
+    <table class="lb-table">
+      <tbody>
+        ${items.map((it, i) => `
+          <tr>
+            <td class="lb-rank ${i < 3 ? 'podium' : ''}">${i + 1}</td>
+            <td class="lb-name">${it.name}</td>
+            <td class="lb-value">${valueFn(it)}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  </div>`;
 }
 
-['tabBtnResults','tabBtnUpcoming'].forEach(id =>
+function renderLeaderboards() {
+  const container = document.getElementById('leaderboardsSection');
+  const season = document.getElementById('seasonFilter').value;
+  const gender = document.getElementById('lbGenderFilter').value;
+
+  const rows = allRows.filter(r => {
+    if (season && getSeason(String(r._stage_id)) !== season) return false;
+    if (gender && r['GENDER'] !== gender) return false;
+    return true;
+  });
+
+  const athletes = {};
+  rows.forEach(r => {
+    const name = `${r['FIRST NAME'] || ''} ${r['LAST NAME'] || ''}`.trim();
+    if (!name) return;
+    if (!athletes[name]) {
+      athletes[name] = { name, points: 0, podiums: 0, stages: new Set() };
+    }
+    const a = athletes[name];
+    a.points += parseInt(r['CLUB POINTS'], 10) || 0;
+    if (isPodiumRow(r)) a.podiums++;
+    if (isAgPodiumRow(r)) a.podiums++;
+    a.stages.add(r._stage_id);
+  });
+
+  const list = Object.values(athletes);
+  const topPoints = [...list].sort((a, b) => b.points - a.points).slice(0, 10);
+  const topPodiums = [...list].sort((a, b) => b.podiums - a.podiums).slice(0, 10);
+  const topEvents = [...list].sort((a, b) => b.stages.size - a.stages.size).slice(0, 10);
+
+  container.innerHTML = `
+    <div class="lb-grid">
+      ${lbTable('Club points', 'Combined club points earned across the selected season', topPoints, it => it.points)}
+      ${lbTable('Podiums', 'Overall + age group podium finishes, combined', topPodiums, it => it.podiums)}
+      ${lbTable('Most active', 'Number of distinct races entered', topEvents, it => it.stages.size)}
+    </div>
+  `;
+}
+
+function switchTab(tab) {
+  document.getElementById('tabBtnResults').classList.toggle('active', tab === 'results');
+  document.getElementById('tabBtnUpcoming').classList.toggle('active', tab === 'upcoming');
+  document.getElementById('tabBtnLeaderboards').classList.toggle('active', tab === 'leaderboards');
+  document.getElementById('resultsView').style.display = tab === 'results' ? '' : 'none';
+  document.getElementById('upcomingView').style.display = tab === 'upcoming' ? '' : 'none';
+  document.getElementById('leaderboardsView').style.display = tab === 'leaderboards' ? '' : 'none';
+  document.getElementById('resultsOnlyControls').style.display = tab === 'results' ? 'contents' : 'none';
+  document.getElementById('upcomingOnlyControls').style.display = tab === 'upcoming' ? 'contents' : 'none';
+  document.getElementById('leaderboardsOnlyControls').style.display = tab === 'leaderboards' ? 'contents' : 'none';
+}
+
+['tabBtnResults','tabBtnUpcoming','tabBtnLeaderboards'].forEach(id =>
   document.getElementById(id).addEventListener('click', e => switchTab(e.target.dataset.tab))
 );
 
@@ -653,6 +764,7 @@ function switchTab(tab) {
     populateStageFilter();
     render();
     renderUpcoming();
+    renderLeaderboards();
   })
 );
 ['stageFilter','distanceFilter','genderFilter'].forEach(id =>
@@ -660,6 +772,7 @@ function switchTab(tab) {
 );
 document.getElementById('athleteSearch').addEventListener('input', render);
 document.getElementById('upcomingDistanceFilter').addEventListener('change', renderUpcoming);
+document.getElementById('lbGenderFilter').addEventListener('change', renderLeaderboards);
 
 loadData();
 </script>
