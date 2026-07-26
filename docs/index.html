@@ -175,7 +175,10 @@
 
   <div class="stats" id="stats"></div>
 
-  <div class="controls">
+
+
+    <div class="controls">
+    <select id="seasonFilter"><option value="">All seasons</option></select>
     <select id="stageFilter"><option value="">All stages</option></select>
     <select id="distanceFilter">
       <option value="">All distances</option>
@@ -211,10 +214,22 @@
 <script>
 const DIST_LABELS = { od: "Olimpinė", sd: "Sprinto" };
 
+
+
+
+
+
 let allRows = [];
 let stageNames = {};
 let upcomingData = {};
 let chart = null;
+
+function getSeason(stageId) {
+  const name = stageNames[stageId];
+  if (!name) return null;
+  const match = name.match(/\((\d{4})/);
+  return match ? match[1] : null;
+}
 
 function timeToSeconds(t) {
   if (!t) return null;
@@ -244,28 +259,92 @@ async function loadData() {
   if (namesRes.status === 'fulfilled' && namesRes.value.ok) {
     try { stageNames = await namesRes.value.json(); } catch(e) { stageNames = {}; }
   }
-  if (upcomingRes.status === 'fulfilled' && upcomingRes.value.ok) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if (upcomingRes.status === 'fulfilled' && upcomingRes.value.ok) {
     try { upcomingData = await upcomingRes.value.json(); } catch(e) { upcomingData = {}; }
   }
 
+  populateSeasonFilter();
   populateStageFilter();
   render();
   renderUpcoming();
 }
 
+function populateSeasonFilter() {
+  const seasonFilter = document.getElementById('seasonFilter');
+  const seasons = [...new Set(Object.keys(stageNames).map(id => getSeason(id)).filter(Boolean))].sort((a,b) => b - a);
+  
+  seasonFilter.innerHTML = '<option value="">All seasons</option>';
+  seasons.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    seasonFilter.appendChild(opt);
+  });
+
+  // Pre-select the latest season by default
+  if (seasons.length > 0) {
+    seasonFilter.value = seasons[0];
+  }
+}
+
 function populateStageFilter() {
   const stageFilter = document.getElementById('stageFilter');
-  const stageIds = [...new Set(allRows.map(r => r._stage_id))].sort((a,b)=>a-b);
+  const selectedSeason = document.getElementById('seasonFilter').value;
+  
+  const currentVal = stageFilter.value;
+  stageFilter.innerHTML = '<option value="">All stages</option>';
+
+  const stageIds = [...new Set(allRows.map(r => String(r._stage_id)))]
+    .filter(id => !selectedSeason || getSeason(id) === selectedSeason)
+    .sort((a,b) => Number(a) - Number(b));
+
   stageIds.forEach(id => {
     const opt = document.createElement('option');
     opt.value = id;
     opt.textContent = stageLabel(id);
     stageFilter.appendChild(opt);
   });
+  
+  if ([...stageFilter.options].some(o => o.value === currentVal)) {
+    stageFilter.value = currentVal;
+  }
 }
 
 function currentFilters() {
   return {
+    season: document.getElementById('seasonFilter').value,
     stage: document.getElementById('stageFilter').value,
     distance: document.getElementById('distanceFilter').value,
     athlete: document.getElementById('athleteSearch').value.trim().toLowerCase()
@@ -275,7 +354,9 @@ function currentFilters() {
 function filteredRows() {
   const f = currentFilters();
   return allRows.filter(r => {
-    if (f.stage && String(r._stage_id) !== String(f.stage)) return false;
+    const sId = String(r._stage_id);
+    if (f.season && getSeason(sId) !== f.season) return false;
+    if (f.stage && sId !== String(f.stage)) return false;
     if (f.distance && r._distance !== f.distance) return false;
     if (f.athlete) {
       const full = `${r['FIRST NAME']||''} ${r['LAST NAME']||''}`.toLowerCase();
@@ -457,6 +538,14 @@ function renderUpcoming() {
   `;
 }
 
+
+
+['seasonFilter'].forEach(id =>
+  document.getElementById(id).addEventListener('change', () => {
+    populateStageFilter();
+    render();
+  })
+);
 ['stageFilter','distanceFilter'].forEach(id =>
   document.getElementById(id).addEventListener('change', render)
 );
