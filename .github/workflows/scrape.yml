@@ -1,0 +1,36 @@
+name: Scrape triathlon results
+
+on:
+  schedule:
+    # Runs every Monday at 05:00 UTC. Adjust as you like.
+    - cron: "0 5 * * 1"
+  workflow_dispatch: {}  # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: Run scraper
+        run: python scraper/scrape.py --club "HighPeaks Lietuva"
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/all_results_raw.json docs/data.json docs/stage_names.json docs/upcoming.json
+          git diff --cached --quiet || git commit -m "Update scraped results [automated]"
+          git push

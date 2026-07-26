@@ -1,0 +1,301 @@
+#!/usr/bin/env python3
+"""
+Scraper for triatlonotaure.lt results and upcoming-race registrations.
+
+Three API endpoints are used (all discovered via browser devtools):
+
+1) Stage list, per season:
+   GET https://www.triatlonotaure.lt/api/stages?season={season_id}
+   Returns real stage names, dates, addresses, and a `has_results` flag.
+   Some entries in this list are NOT individual races - they're season-wide
+   aggregates (e.g. "Klubų įskaita" / club standings, or per-age-group combined
+   results) and are marked `global_results_stage: true` / `show_in_main_window: false`.
+   Those are skipped here since they don't represent a single race someone competed in.
+
+2) Results for a stage that already happened (has_results: true):
+   GET https://www.triatlonotaure.lt/api/stages/{stage_id}/results
+       ?page=0&size=100&query=&distance=od   (od = Olimpine distancija)
+       ?page=0&size=100&query=&distance=sd   (sd = Sprinto distancija)
+   Each record: {"id":..., "distance":"od", "row":[...], "titles":[...], "stageId":...}
+   "row"/"titles" line up positionally and are zipped into a flat dict.
+
+3) Participants/registrations for a stage that hasn't happened yet (has_results: false):
+   GET https://www.triatlonotaure.lt/api/stages/{stage_id}/participants
+       ?page=0&size=100&query=&participantType=all&distance=
+   Each record is already a flat object (no row/titles unpacking needed), with
+   "club", "displayName", nested "distance": {"name": ...}, and "payed" (bool),
+   plus "payment": {"payed": bool, "price": "45.00"}.
+"""
+
+import argparse
+import json
+import time
+import sys
+from pathlib import Path
+
+import requests
+
+# Project root = one level up from this script (scraper/scrape.py -> project root)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+STAGES_LIST_URL = "https://www.triatlonotaure.lt/api/stages"
+RESULTS_URL = "https://www.triatlonotaure.lt/api/stages/{stage_id}/results"
+PARTICIPANTS_URL = "https://www.triatlonotaure.lt/api/stages/{stage_id}/participants"
+
+DISTANCES = ["od", "sd"]  # Olimpine distancija, Sprinto distancija
+PAGE_SIZE = 100
+REQUEST_DELAY_SECONDS = 0.4  # be polite to their server
+TIMEOUT = 15
+MAX_CONSECUTIVE_EMPTY_SEASONS = 3  # stop season scan after this many empty seasons in a row
+
+
+def fetch_season_stages(session, season_id):
+    """Fetch the stage list for one season. Returns [] on any failure or empty season."""
+    try:
+        resp = session.get(STAGES_LIST_URL, params={"season": season_id}, timeout=TIMEOUT)
+    except requests.RequestException as e:
+        print(f"  [season {season_id}] request failed: {e}", file=sys.stderr)
+        return []
+    if resp.status_code != 200:
+        return []
+    try:
+        data = resp.json()
+    except ValueError:
+        return []
+    return data if isinstance(data, list) else []
+
+
+def discover_all_stages(session, max_seasons=30):
+    """
+    Walk season IDs 1..max_seasons, collecting real races (skip aggregate entries).
+    Returns (completed_stages, upcoming_stages), both {stage_id: info_dict}.
+    """
+    completed = {}
+    upcoming = {}
+    consecutive_empty = 0
+
+    for season_id in range(1, max_seasons + 1):
+        season_stages = fetch_season_stages(session, season_id)
+        if not season_stages:
+            consecutive_empty += 1
+            if consecutive_empty >= MAX_CONSECUTIVE_EMPTY_SEASONS:
+                print(f"Stopping season scan after {MAX_CONSECUTIVE_EMPTY_SEASONS} empty seasons in a row.")
+                break
+            continue
+        consecutive_empty = 0
+
+        usable_count = 0
+        for stage in season_stages:
+            if not stage.get("show_in_main_window", True):
+                continue  # season-wide aggregate (club standings, combined age groups, etc), not a real race
+            info = {
+                "name": stage.get("name"),
+                "date": stage.get("stage_date"),
+                "address": stage.get("address"),
+                "season_name": (stage.get("season") or {}).get("name"),
+            }
+            if stage.get("has_results"):
+                completed[stage["id"]] = info
+            else:
+                upcoming[stage["id"]] = info
+            usable_count += 1
+        print(f"Season {season_id}: found {len(season_stages)} entries ({usable_count} real races)")
+        time.sleep(REQUEST_DELAY_SECONDS)
+
+    return completed, upcoming
+
+
+def fetch_stage_distance(session, stage_id, distance):
+    """Fetch all pages of results for one stage + distance combo."""
+    records = []
+    page = 0
+    while True:
+        params = {"page": page, "size": PAGE_SIZE, "query": "", "distance": distance}
+        try:
+            resp = session.get(RESULTS_URL.format(stage_id=stage_id), params=params, timeout=TIMEOUT)
+        except requests.RequestException as e:
+            print(f"  [stage {stage_id} / {distance}] request failed: {e}", file=sys.stderr)
+            break
+
+        if resp.status_code != 200:
+            break
+        try:
+            data = resp.json()
+        except ValueError:
+            break
+
+        rows = data.get("result", [])
+        if not rows:
+            break
+        records.extend(rows)
+
+        total_pages = data.get("total_pages", 1)
+        page += 1
+        if page >= total_pages:
+            break
+        time.sleep(REQUEST_DELAY_SECONDS)
+
+    return records
+
+
+def fetch_stage_participants(session, stage_id):
+    """Fetch all pages of registrations/participants for one stage (all distances at once)."""
+    records = []
+    page = 0
+    while True:
+        params = {"page": page, "size": PAGE_SIZE, "query": "", "participantType": "all", "distance": ""}
+        try:
+            resp = session.get(PARTICIPANTS_URL.format(stage_id=stage_id), params=params, timeout=TIMEOUT)
+        except requests.RequestException as e:
+            print(f"  [stage {stage_id} participants] request failed: {e}", file=sys.stderr)
+            break
+
+        if resp.status_code != 200:
+            break
+        try:
+            data = resp.json()
+        except ValueError:
+            break
+
+        rows = data.get("result", [])
+        if not rows:
+            break
+        records.extend(rows)
+
+        total_pages = data.get("total_pages", 1)
+        page += 1
+        if page >= total_pages:
+            break
+        time.sleep(REQUEST_DELAY_SECONDS)
+
+    return records
+
+
+def record_to_dict(record):
+    """Turn a {row, titles, ...} results record into a flat dict keyed by column name."""
+    titles = record.get("titles", [])
+    row = record.get("row", [])
+    flat = dict(zip(titles, row))
+    flat["_id"] = record.get("id")
+    flat["_stage_id"] = record.get("stageId")
+    flat["_distance"] = record.get("distance")
+    return flat
+
+
+def participant_to_dict(record):
+    """Flatten a participants-endpoint record into the fields the frontend needs."""
+    distance = record.get("distance") or {}
+    payment = record.get("payment") or {}
+    return {
+        "displayName": record.get("displayName"),
+        "first_name": record.get("first_name"),
+        "last_name": record.get("last_name"),
+        "city": record.get("city"),
+        "club": record.get("club"),
+        "distance_name": distance.get("name"),
+        "distance_code": distance.get("code"),
+        "payed": record.get("payed", payment.get("payed")),
+        "price": payment.get("price"),
+        "_stage_id": record.get("stageId"),
+    }
+
+
+def stage_label(info):
+    name = info.get("name") or "Unknown stage"
+    date = (info.get("date") or "")[:10]  # trim to YYYY-MM-DD
+    return f"{name} ({date})" if date else name
+
+
+def scrape(club_name, out_raw_path, out_filtered_path, out_stage_names_path,
+           out_upcoming_path, max_seasons):
+    session = requests.Session()
+    session.headers.update({"User-Agent": "highpeaks-results-scraper/1.0"})
+
+    print("Discovering stages across seasons...")
+    print(f"  raw archive     -> {Path(out_raw_path).resolve()}")
+    print(f"  filtered data   -> {Path(out_filtered_path).resolve()}")
+    print(f"  stage names     -> {Path(out_stage_names_path).resolve()}")
+    print(f"  upcoming/regs   -> {Path(out_upcoming_path).resolve()}\n")
+
+    completed_stages, upcoming_stages = discover_all_stages(session, max_seasons=max_seasons)
+    print(f"\nFound {len(completed_stages)} completed races and "
+          f"{len(upcoming_stages)} upcoming races.\n")
+
+    # --- Completed races: pull results ---
+    all_records = []
+    for stage_id, info in sorted(completed_stages.items()):
+        stage_had_data = False
+        for distance in DISTANCES:
+            records = fetch_stage_distance(session, stage_id, distance)
+            if records:
+                stage_had_data = True
+                all_records.extend(record_to_dict(r) for r in records)
+            time.sleep(REQUEST_DELAY_SECONDS)
+        print(f"Results - stage {stage_id} ({stage_label(info)}): "
+              f"{'OK' if stage_had_data else 'no results returned'}")
+
+    Path(out_raw_path).parent.mkdir(parents=True, exist_ok=True)
+    with open(out_raw_path, "w", encoding="utf-8") as f:
+        json.dump(all_records, f, ensure_ascii=False, indent=2)
+    print(f"\nSaved {len(all_records)} total result rows to {out_raw_path}")
+
+    filtered = [r for r in all_records if (r.get("CLUB") or "").strip() == club_name]
+    Path(out_filtered_path).parent.mkdir(parents=True, exist_ok=True)
+    with open(out_filtered_path, "w", encoding="utf-8") as f:
+        json.dump(filtered, f, ensure_ascii=False, indent=2)
+    print(f"Saved {len(filtered)} result rows for club '{club_name}' to {out_filtered_path}")
+
+    # --- Upcoming races: pull registrations/participants ---
+    upcoming_output = {}
+    for stage_id, info in sorted(upcoming_stages.items()):
+        participants = fetch_stage_participants(session, stage_id)
+        club_participants = [
+            participant_to_dict(p) for p in participants
+            if (p.get("club") or "").strip() == club_name
+        ]
+        upcoming_output[str(stage_id)] = {
+            "stage_name": info.get("name"),
+            "stage_date": info.get("date"),
+            "address": info.get("address"),
+            "total_participants": len(participants),
+            "club_registrations": club_participants,
+        }
+        print(f"Registrations - stage {stage_id} ({stage_label(info)}): "
+              f"{len(club_participants)} from '{club_name}' out of {len(participants)} total")
+        time.sleep(REQUEST_DELAY_SECONDS)
+
+    Path(out_upcoming_path).parent.mkdir(parents=True, exist_ok=True)
+    with open(out_upcoming_path, "w", encoding="utf-8") as f:
+        json.dump(upcoming_output, f, ensure_ascii=False, indent=2)
+    print(f"Saved upcoming-race registrations for {len(upcoming_output)} stages to {out_upcoming_path}")
+
+    # --- Stage names (covers both completed and upcoming, for frontend labels) ---
+    all_stages = {**completed_stages, **upcoming_stages}
+    stage_names = {str(sid): stage_label(info) for sid, info in all_stages.items()}
+    Path(out_stage_names_path).parent.mkdir(parents=True, exist_ok=True)
+    with open(out_stage_names_path, "w", encoding="utf-8") as f:
+        json.dump(stage_names, f, ensure_ascii=False, indent=2)
+    print(f"Saved names for {len(stage_names)} stages to {out_stage_names_path}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Scrape triatlonotaure.lt results and registrations for a club.")
+    parser.add_argument("--club", default="HighPeaks Lietuva", help="Exact club name to filter for")
+    parser.add_argument("--max-seasons", type=int, default=15,
+                         help="Upper bound on season IDs to try (stops early once seasons come back empty)")
+    parser.add_argument("--out-raw", default=str(PROJECT_ROOT / "data" / "all_results_raw.json"),
+                         help="Path for the unfiltered results archive")
+    parser.add_argument("--out-filtered", default=str(PROJECT_ROOT / "docs" / "data.json"),
+                         help="Path for the filtered results the frontend reads")
+    parser.add_argument("--out-stage-names", default=str(PROJECT_ROOT / "docs" / "stage_names.json"),
+                         help="Path for the stage id -> label map")
+    parser.add_argument("--out-upcoming", default=str(PROJECT_ROOT / "docs" / "upcoming.json"),
+                         help="Path for upcoming-race registrations (payment status etc)")
+    args = parser.parse_args()
+
+    scrape(args.club, args.out_raw, args.out_filtered, args.out_stage_names,
+           args.out_upcoming, args.max_seasons)
+
+
+if __name__ == "__main__":
+    main()
