@@ -193,6 +193,10 @@
   .lb-grid{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;
   }
+  .lb-grid + .lb-section-title{margin-top:32px;}
+  .lb-section-title{
+    font-family:'Space Grotesk',sans-serif;font-size:16px;margin:0 0 14px;color:var(--text-dim);
+  }
   .lb-panel{
     background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);
     padding:20px;
@@ -202,12 +206,28 @@
   .lb-table{width:100%;border-collapse:collapse;font-size:13px;}
   .lb-table td{padding:8px 4px;border-bottom:1px solid var(--line);}
   .lb-table tr:last-child td{border-bottom:none;}
+  .lb-table tbody tr:hover{background:var(--bg-panel-2);}
   .lb-rank{
     font-family:'JetBrains Mono',monospace;color:var(--text-dim);width:22px;font-weight:600;
   }
   .lb-rank.podium{color:var(--accent-warm);}
   .lb-name{font-weight:600;}
   .lb-value{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent-warm);white-space:nowrap;}
+
+  .value-tip-wrap{position:relative;display:inline-block;}
+  .value-tip{
+    position:absolute;bottom:calc(100% + 8px);right:0;
+    background:var(--bg-panel-2);border:1px solid var(--line);border-radius:8px;
+    padding:6px 10px;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11px;
+    white-space:nowrap;color:var(--text-dim);
+    opacity:0;visibility:hidden;pointer-events:none;transition:opacity .12s ease;z-index:20;
+    box-shadow:0 6px 18px rgba(0,0,0,0.4);
+  }
+  .value-tip::after{
+    content:'';position:absolute;top:100%;right:10px;
+    border:5px solid transparent;border-top-color:var(--bg-panel-2);
+  }
+  .lb-table tr:hover .value-tip{opacity:1;visibility:visible;}
 
   .standings-lede{color:var(--text-dim);font-size:13px;margin:0 0 20px;}
   .standings-banner{
@@ -425,6 +445,50 @@ function countNonAscii(s) {
   return ((s || '').match(/[^\x00-\x7F]/g) || []).length;
 }
 
+function secondsToPace(totalSeconds) {
+  const m = Math.floor(totalSeconds / 60);
+  const s = Math.round(totalSeconds % 60);
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
+
+// The source site occasionally reports a bogus pace (seen: two different
+// athletes both showing exactly 1:00/100m on the same stage while their raw
+// swim time was normal) - below this floor is not realistic for this club,
+// so treat it as bad data rather than a record-breaking swim.
+const MIN_PLAUSIBLE_SWIM_PACE_SECONDS = 70;
+
+function swimPaceSeconds(r) {
+  const t = timeToSeconds(r['PACE (min/100m)']);
+  return (t && t >= MIN_PLAUSIBLE_SWIM_PACE_SECONDS) ? t : null;
+}
+
+function runPaceSeconds(r) {
+  if (!r['RUN']) return null; // pace is bogus (0:00) when the run leg wasn't recorded (DNF)
+  const t = timeToSeconds(r['PACE (min/1km)']);
+  return t || null;
+}
+
+function bikeSpeedKmh(r) {
+  const v = parseFloat(r['AVG SPEED (km/h)']);
+  return Number.isFinite(v) ? v : null;
+}
+
+// Best (lowest-score) result per athlete, deduped by diacritic-insensitive name.
+function bestPerAthlete(rowsSubset, scoreFn) {
+  const best = {};
+  rowsSubset.forEach(r => {
+    const name = `${r['FIRST NAME'] || ''} ${r['LAST NAME'] || ''}`.trim();
+    if (!name) return;
+    const score = scoreFn(r);
+    if (score === null || score === undefined || !Number.isFinite(score)) return;
+    const key = normalizeNameKey(name);
+    if (!best[key] || score < best[key].score) {
+      best[key] = { name, score, stageId: r._stage_id };
+    }
+  });
+  return Object.values(best).sort((a, b) => a.score - b.score).slice(0, 5);
+}
+
 // The upcoming-races API doesn't include gender, so infer it from this
 // person's past race results (matched by name) when possible.
 function genderForName(firstName, lastName) {
@@ -446,6 +510,10 @@ function normalizeRow(r) {
   r['SWIM POS'] = r['SWIM POS'] ?? r['Swim pos'];
   r['BIKE POS'] = r['BIKE POS'] ?? r['Bike pos'];
   r['RUN POS'] = r['RUN POS'] ?? r['Run pos'];
+  r['AVG SPEED (km/h)'] = (
+    r['AVG. SPEED (km/h)'] ?? r['AVG, SPEED (km/h)'] ??
+    r[' AVG. SPEED (km/h) '] ?? r[' AVG, SPEED (km/h) '] ?? ''
+  ).toString().trim();
   return r;
 }
 
@@ -871,7 +939,7 @@ function renderStandings() {
   `;
 }
 
-function lbTable(title, subtitle, items, valueFn) {
+function lbTable(title, subtitle, items, valueFn, valueColor, raceFn) {
   if (!items.length) {
     return `
     <div class="lb-panel">
@@ -880,6 +948,7 @@ function lbTable(title, subtitle, items, valueFn) {
       <p class="no-upcoming">No data for this filter.</p>
     </div>`;
   }
+  const colorStyle = valueColor ? ` style="color:${valueColor};"` : '';
   return `
   <div class="lb-panel">
     <h3>${title}</h3>
@@ -890,7 +959,7 @@ function lbTable(title, subtitle, items, valueFn) {
           <tr>
             <td class="lb-rank ${i < 3 ? 'podium' : ''}">${i + 1}</td>
             <td class="lb-name">${it.name}</td>
-            <td class="lb-value">${valueFn(it)}</td>
+            <td class="lb-value"${colorStyle}>${raceFn ? `<span class="value-tip-wrap">${valueFn(it)}<span class="value-tip">${raceFn(it)}</span></span>` : valueFn(it)}</td>
           </tr>
         `).join('')}
       </tbody>
@@ -932,11 +1001,40 @@ function renderLeaderboards() {
   const topPodiums = [...list].sort((a, b) => b.podiums - a.podiums).slice(0, 10);
   const topEvents = [...list].sort((a, b) => b.stages.size - a.stages.size).slice(0, 10);
 
+  const sdRows = rows.filter(r => r._distance === 'sd');
+  const odRows = rows.filter(r => r._distance === 'od');
+
+  const paceLabel = it => `${secondsToPace(it.score)}/100m`;
+  const runLabel = it => `${secondsToPace(it.score)}/km`;
+  const speedLabel = it => `${(-it.score).toFixed(1)} km/h`;
+  const raceOf = it => stageLabel(it.stageId);
+
+  const swimSD = bestPerAthlete(sdRows, swimPaceSeconds);
+  const swimOD = bestPerAthlete(odRows, swimPaceSeconds);
+  const bikeSD = bestPerAthlete(sdRows, r => { const v = bikeSpeedKmh(r); return v === null ? null : -v; });
+  const bikeOD = bestPerAthlete(odRows, r => { const v = bikeSpeedKmh(r); return v === null ? null : -v; });
+  const runSD = bestPerAthlete(sdRows, runPaceSeconds);
+  const runOD = bestPerAthlete(odRows, runPaceSeconds);
+
   container.innerHTML = `
     <div class="lb-grid">
       ${lbTable('Club points', 'Combined club points earned across the selected season', topPoints, it => it.points)}
       ${lbTable('Podiums', 'Overall + age group podium finishes, combined', topPodiums, it => it.podiums)}
       ${lbTable('Most active', 'Number of distinct races entered', topEvents, it => it.stages.size)}
+    </div>
+
+    <h3 class="lb-section-title">Fastest — Sprinto distancija</h3>
+    <div class="lb-grid">
+      ${lbTable('Fastest swim', 'Best swim pace this season (SD)', swimSD, paceLabel, 'var(--swim)', raceOf)}
+      ${lbTable('Fastest bike', 'Best average bike speed this season (SD)', bikeSD, speedLabel, 'var(--bike)', raceOf)}
+      ${lbTable('Fastest run', 'Best run pace this season (SD)', runSD, runLabel, 'var(--run)', raceOf)}
+    </div>
+
+    <h3 class="lb-section-title">Fastest — Olimpinė distancija</h3>
+    <div class="lb-grid">
+      ${lbTable('Fastest swim', 'Best swim pace this season (OD)', swimOD, paceLabel, 'var(--swim)', raceOf)}
+      ${lbTable('Fastest bike', 'Best average bike speed this season (OD)', bikeOD, speedLabel, 'var(--bike)', raceOf)}
+      ${lbTable('Fastest run', 'Best run pace this season (OD)', runOD, runLabel, 'var(--run)', raceOf)}
     </div>
   `;
 }
