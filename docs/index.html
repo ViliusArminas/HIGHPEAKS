@@ -311,6 +311,7 @@
         <option value="V">Male</option>
         <option value="M">Female</option>
       </select>
+      <select id="lbAgeGroupFilter"><option value="">All age groups</option></select>
     </span>
   </div>
 
@@ -413,15 +414,26 @@ function isAgPodiumRow(r) {
   return isTop3(r['GROUP POS']);
 }
 
+// Some athletes register with Lithuanian diacritics (Ė, Į, Ų, Č...) sometimes and
+// plain ASCII other times. Strip diacritics for matching so both spellings group
+// as the same person, while keeping the original for display.
+function normalizeNameKey(s) {
+  return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').trim().toLowerCase();
+}
+
+function countNonAscii(s) {
+  return ((s || '').match(/[^\x00-\x7F]/g) || []).length;
+}
+
 // The upcoming-races API doesn't include gender, so infer it from this
 // person's past race results (matched by name) when possible.
 function genderForName(firstName, lastName) {
-  const key = `${(firstName || '').trim().toLowerCase()} ${(lastName || '').trim().toLowerCase()}`;
+  const key = normalizeNameKey(`${firstName || ''} ${lastName || ''}`);
   if (!genderByName) {
     genderByName = {};
     allRows.forEach(r => {
-      const k = `${(r['FIRST NAME'] || '').trim().toLowerCase()} ${(r['LAST NAME'] || '').trim().toLowerCase()}`;
-      if (k.trim() && r['GENDER']) genderByName[k] = r['GENDER'];
+      const k = normalizeNameKey(`${r['FIRST NAME'] || ''} ${r['LAST NAME'] || ''}`);
+      if (k && r['GENDER']) genderByName[k] = r['GENDER'];
     });
   }
   return genderByName[key];
@@ -463,7 +475,8 @@ async function loadData() {
 
   populateSeasonFilter();
   populateStageFilter();
-  populateAgeGroupFilter();
+  populateAgeGroupFilter('ageGroupFilter');
+  populateAgeGroupFilter('lbAgeGroupFilter');
   render();
   renderUpcoming();
   renderStandings();
@@ -537,8 +550,8 @@ function populateStageFilter() {
   }
 }
 
-function populateAgeGroupFilter() {
-  const ageGroupFilter = document.getElementById('ageGroupFilter');
+function populateAgeGroupFilter(selectId) {
+  const ageGroupFilter = document.getElementById(selectId);
   const currentVal = ageGroupFilter.value;
   const ageGroups = [...new Set(allRows.map(r => r['AGE GROUP']).filter(g => g && g !== '-'))].sort();
 
@@ -889,10 +902,12 @@ function renderLeaderboards() {
   const container = document.getElementById('leaderboardsSection');
   const season = document.getElementById('seasonFilter').value;
   const gender = document.getElementById('lbGenderFilter').value;
+  const ageGroup = document.getElementById('lbAgeGroupFilter').value;
 
   const rows = allRows.filter(r => {
     if (season && getSeason(String(r._stage_id)) !== season) return false;
     if (gender && r['GENDER'] !== gender) return false;
+    if (ageGroup && r['AGE GROUP'] !== ageGroup) return false;
     return true;
   });
 
@@ -900,10 +915,12 @@ function renderLeaderboards() {
   rows.forEach(r => {
     const name = `${r['FIRST NAME'] || ''} ${r['LAST NAME'] || ''}`.trim();
     if (!name) return;
-    if (!athletes[name]) {
-      athletes[name] = { name, points: 0, podiums: 0, stages: new Set() };
+    const key = normalizeNameKey(name);
+    if (!athletes[key]) {
+      athletes[key] = { name, points: 0, podiums: 0, stages: new Set() };
     }
-    const a = athletes[name];
+    const a = athletes[key];
+    if (countNonAscii(name) > countNonAscii(a.name)) a.name = name;
     a.points += parseInt(r['CLUB POINTS'], 10) || 0;
     if (isPodiumRow(r)) a.podiums++;
     if (isAgPodiumRow(r)) a.podiums++;
@@ -958,6 +975,7 @@ document.getElementById('athleteSearch').addEventListener('input', render);
 document.getElementById('upcomingDistanceFilter').addEventListener('change', renderUpcoming);
 document.getElementById('upcomingGenderFilter').addEventListener('change', renderUpcoming);
 document.getElementById('lbGenderFilter').addEventListener('change', renderLeaderboards);
+document.getElementById('lbAgeGroupFilter').addEventListener('change', renderLeaderboards);
 
 loadData();
 </script>
