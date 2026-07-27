@@ -84,9 +84,10 @@
   select, input[type="text"]{
     background:var(--bg-panel);color:var(--text);border:1px solid var(--line);
     border-radius:8px;padding:9px 12px;font-family:'Inter',sans-serif;font-size:13px;
-    min-width:160px;
+    min-width:130px;
   }
-  input[type="text"]{min-width:220px;}
+  input[type="text"]{min-width:180px;}
+  #seasonFilter{min-width:80px;width:80px;flex:0 0 auto;}
   select:focus, input:focus{outline:2px solid var(--accent);outline-offset:1px;}
 
   .empty{
@@ -158,6 +159,10 @@
     font-family:'Space Grotesk',sans-serif;font-size:20px;margin:0 0 4px;
   }
   .upcoming > p.lede{color:var(--text-dim);font-size:13px;margin:0 0 20px;}
+
+  .standings > h2{
+    font-family:'Space Grotesk',sans-serif;font-size:20px;margin:0 0 4px;
+  }
   .stage-card{
     background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);
     padding:18px 20px;margin-bottom:16px;
@@ -204,17 +209,55 @@
   .lb-name{font-weight:600;}
   .lb-value{text-align:right;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent-warm);white-space:nowrap;}
 
+  .standings-lede{color:var(--text-dim);font-size:13px;margin:0 0 20px;}
+  .standings-banner{
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+    background:var(--bg-panel);border:1px solid var(--line);border-left:3px solid var(--accent-warm);
+    border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;
+  }
+  .standings-banner-place{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--accent-warm);
+    white-space:nowrap;
+  }
+  .standings-banner-detail{color:var(--text-dim);font-size:13px;}
+  .standings-banner-lead{border-left-color:var(--run);}
+  .standings-banner-lead .standings-banner-place{color:var(--run);}
+  .standings-scroll{
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);
+    overflow-x:auto;
+  }
+  .standings-table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap;}
+  .standings-table th{
+    text-align:left;font-family:'JetBrains Mono',monospace;font-weight:400;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);
+    padding:10px 14px;border-bottom:1px solid var(--line);
+  }
+  .standings-table td{padding:10px 14px;border-bottom:1px solid var(--line);}
+  .standings-table tbody tr:last-child td{border-bottom:none;}
+  .standings-table tbody tr:hover{background:var(--bg-panel-2);}
+  .standings-table .st-place{
+    font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--text-dim);
+  }
+  .standings-table .st-place.podium{color:var(--accent-warm);}
+  .standings-table .st-club{font-weight:600;}
+  .standings-table .st-num{font-family:'JetBrains Mono',monospace;text-align:right;}
+  .standings-table .st-total{color:var(--accent-warm);font-weight:600;}
+  .standings-table tr.own-club{background:rgba(63,169,160,0.12);}
+  .standings-table tr.own-club .st-club{color:var(--accent);}
+  .standings-table tr.own-club td{border-bottom-color:rgba(63,169,160,0.35);}
+
   footer{
     margin-top:40px;color:var(--text-dim);font-size:12px;text-align:center;
   }
   footer a{color:var(--accent);}
 
   @media (max-width:640px){
-    table, thead, tbody, tr, th, td{display:block;}
-    thead{display:none;}
-    tbody tr{border-bottom:1px solid var(--line);padding:12px 0;}
-    tbody td{border:none;padding:4px 0;display:flex;justify-content:space-between;gap:12px;}
-    tbody td::before{content:attr(data-label);color:var(--text-dim);font-size:11px;}
+    #tableWrap table, #tableWrap thead, #tableWrap tbody, #tableWrap tr, #tableWrap th, #tableWrap td{display:block;}
+    #tableWrap thead{display:none;}
+    #tableWrap tbody tr{border-bottom:1px solid var(--line);padding:12px 0;}
+    #tableWrap tbody td{border:none;padding:4px 0;display:flex;justify-content:space-between;gap:12px;}
+    #tableWrap tbody td::before{content:attr(data-label);color:var(--text-dim);font-size:11px;}
+    .standings-scroll{border-left:none;border-right:none;border-radius:0;margin:0 -20px;width:calc(100% + 40px);}
   }
 </style>
 </head>
@@ -234,10 +277,11 @@
     <button type="button" class="tab-btn active" id="tabBtnResults" data-tab="results">Results</button>
     <button type="button" class="tab-btn" id="tabBtnLeaderboards" data-tab="leaderboards">Leaderboards</button>
     <button type="button" class="tab-btn" id="tabBtnUpcoming" data-tab="upcoming">Upcoming races</button>
+    <button type="button" class="tab-btn" id="tabBtnStandings" data-tab="standings">Club standings</button>
   </div>
 
   <div class="controls">
-    <select id="seasonFilter"><option value="">All seasons</option></select>
+    <select id="seasonFilter"></select>
     <span id="resultsOnlyControls" style="display:contents;">
       <select id="stageFilter"></select>
       <select id="distanceFilter">
@@ -250,10 +294,16 @@
         <option value="V">Male</option>
         <option value="M">Female</option>
       </select>
+      <select id="ageGroupFilter"><option value="">All age groups</option></select>
       <input type="text" id="athleteSearch" placeholder="Search athlete…">
     </span>
     <span id="upcomingOnlyControls" style="display:none;">
       <select id="upcomingDistanceFilter"><option value="">All distances</option></select>
+      <select id="upcomingGenderFilter">
+        <option value="">All genders</option>
+        <option value="V">Male</option>
+        <option value="M">Female</option>
+      </select>
     </span>
     <span id="leaderboardsOnlyControls" style="display:none;">
       <select id="lbGenderFilter">
@@ -292,6 +342,10 @@
     <div id="leaderboardsSection"></div>
   </div>
 
+  <div id="standingsView" style="display:none;">
+    <div id="standingsSection"></div>
+  </div>
+
   <footer>
     Data source: <a href="https://www.triatlonotaure.lt/stages" target="_blank" rel="noopener">triatlonotaure.lt</a> ·
     Refreshed automatically via GitHub Actions
@@ -311,7 +365,9 @@ const DIST_LABELS = { od: "OD", sd: "SD" };
 let allRows = [];
 let stageNames = {};
 let upcomingData = {};
+let clubStandingsData = {};
 let chart = null;
+let genderByName = null;
 
 function getSeason(stageId) {
   const name = stageNames[stageId];
@@ -337,6 +393,17 @@ function isTop3(v) {
   return ['1', '2', '3'].includes(String(v));
 }
 
+function ordinal(n) {
+  const v = n % 100;
+  if (v >= 11 && v <= 13) return `${n}th`;
+  switch (n % 10) {
+    case 1: return `${n}st`;
+    case 2: return `${n}nd`;
+    case 3: return `${n}rd`;
+    default: return `${n}th`;
+  }
+}
+
 // A result is a podium finish if either the overall or the gender position is top 3.
 function isPodiumRow(r) {
   return isTop3(r['POS']) || isTop3(r['GENDER POS']);
@@ -344,6 +411,20 @@ function isPodiumRow(r) {
 
 function isAgPodiumRow(r) {
   return isTop3(r['GROUP POS']);
+}
+
+// The upcoming-races API doesn't include gender, so infer it from this
+// person's past race results (matched by name) when possible.
+function genderForName(firstName, lastName) {
+  const key = `${(firstName || '').trim().toLowerCase()} ${(lastName || '').trim().toLowerCase()}`;
+  if (!genderByName) {
+    genderByName = {};
+    allRows.forEach(r => {
+      const k = `${(r['FIRST NAME'] || '').trim().toLowerCase()} ${(r['LAST NAME'] || '').trim().toLowerCase()}`;
+      if (k.trim() && r['GENDER']) genderByName[k] = r['GENDER'];
+    });
+  }
+  return genderByName[key];
 }
 
 // The site's export format changed over time, so some fields show up under
@@ -357,10 +438,11 @@ function normalizeRow(r) {
 }
 
 async function loadData() {
-  const [resultsRes, namesRes, upcomingRes] = await Promise.allSettled([
+  const [resultsRes, namesRes, upcomingRes, standingsRes] = await Promise.allSettled([
     fetch('./data.json'),
     fetch('./stage_names.json'),
-    fetch('./upcoming.json')
+    fetch('./upcoming.json'),
+    fetch('./club_standings.json')
   ]);
 
   if (resultsRes.status === 'fulfilled' && resultsRes.value.ok) {
@@ -368,17 +450,23 @@ async function loadData() {
   } else {
     allRows = [];
   }
+  genderByName = null;
   if (namesRes.status === 'fulfilled' && namesRes.value.ok) {
     try { stageNames = await namesRes.value.json(); } catch(e) { stageNames = {}; }
   }
   if (upcomingRes.status === 'fulfilled' && upcomingRes.value.ok) {
     try { upcomingData = await upcomingRes.value.json(); } catch(e) { upcomingData = {}; }
   }
+  if (standingsRes.status === 'fulfilled' && standingsRes.value.ok) {
+    try { clubStandingsData = await standingsRes.value.json(); } catch(e) { clubStandingsData = {}; }
+  }
 
   populateSeasonFilter();
   populateStageFilter();
+  populateAgeGroupFilter();
   render();
   renderUpcoming();
+  renderStandings();
   renderLeaderboards();
   fetchScrapedAt();
 }
@@ -410,7 +498,7 @@ function populateSeasonFilter() {
   const seasonFilter = document.getElementById('seasonFilter');
   const seasons = [...new Set(Object.keys(stageNames).map(id => getSeason(id)).filter(Boolean))].sort((a,b) => b - a);
   
-  seasonFilter.innerHTML = '<option value="">All seasons</option>';
+  seasonFilter.innerHTML = '';
   seasons.forEach(s => {
     const opt = document.createElement('option');
     opt.value = s;
@@ -449,12 +537,26 @@ function populateStageFilter() {
   }
 }
 
+function populateAgeGroupFilter() {
+  const ageGroupFilter = document.getElementById('ageGroupFilter');
+  const currentVal = ageGroupFilter.value;
+  const ageGroups = [...new Set(allRows.map(r => r['AGE GROUP']).filter(g => g && g !== '-'))].sort();
+
+  ageGroupFilter.innerHTML = '<option value="">All age groups</option>' +
+    ageGroups.map(g => `<option value="${g}">${g}</option>`).join('');
+
+  if ([...ageGroupFilter.options].some(o => o.value === currentVal)) {
+    ageGroupFilter.value = currentVal;
+  }
+}
+
 function currentFilters() {
   return {
     season: document.getElementById('seasonFilter').value,
     stage: document.getElementById('stageFilter').value,
     distance: document.getElementById('distanceFilter').value,
     gender: document.getElementById('genderFilter').value,
+    ageGroup: document.getElementById('ageGroupFilter').value,
     athlete: document.getElementById('athleteSearch').value.trim().toLowerCase()
   };
 }
@@ -467,6 +569,7 @@ function filteredRows() {
     if (f.stage && sId !== String(f.stage)) return false;
     if (f.distance && r._distance !== f.distance) return false;
     if (f.gender && r['GENDER'] !== f.gender) return false;
+    if (f.ageGroup && r['AGE GROUP'] !== f.ageGroup) return false;
     if (f.athlete) {
       const full = `${r['FIRST NAME']||''} ${r['LAST NAME']||''}`.toLowerCase();
       if (!full.includes(f.athlete)) return false;
@@ -482,9 +585,8 @@ function renderStats(rows) {
   const agPodiums = rows.filter(isAgPodiumRow).length;
   const clubPoints = rows.reduce((sum, r) => sum + (parseInt(r['CLUB POINTS'], 10) || 0), 0);
   stats.innerHTML = `
-    <div class="stat"><div class="n">${rows.length}</div><div class="l">Results</div></div>
-    <div class="stat"><div class="n">${clubPoints}</div><div class="l">Club points</div></div>
     <div class="stat"><div class="n">${athleteCount}</div><div class="l">Athletes</div></div>
+    <div class="stat"><div class="n">${clubPoints}</div><div class="l">Club points earned this stage</div></div>
     <div class="stat"><div class="n">${podiums}</div><div class="l">Podium finishes</div></div>
     <div class="stat"><div class="n">${agPodiums}</div><div class="l">Age group podium finishes</div></div>
   `;
@@ -621,6 +723,7 @@ function renderUpcoming() {
     distanceNames.map(d => `<option value="${d}">${d}</option>`).join('');
   if (distanceNames.includes(currentDist)) distFilter.value = currentDist;
   const selectedDistance = distFilter.value;
+  const selectedGender = document.getElementById('upcomingGenderFilter').value;
 
   if (!stageIds.length) {
     container.innerHTML = `<p class="no-upcoming">No upcoming races${selectedSeason ? ` in ${selectedSeason}` : ''}.</p>`;
@@ -632,11 +735,12 @@ function renderUpcoming() {
     .map(stageId => {
       const stage = upcomingData[stageId];
       const allRegs = stage.club_registrations || [];
-      const regs = selectedDistance ? allRegs.filter(r => r.distance_name === selectedDistance) : allRegs;
+      let regs = selectedDistance ? allRegs.filter(r => r.distance_name === selectedDistance) : allRegs;
+      regs = selectedGender ? regs.filter(r => genderForName(r.first_name, r.last_name) === selectedGender) : regs;
       const dateStr = (stage.stage_date || '').slice(0, 10);
 
       if (!regs.length) {
-        const msg = allRegs.length ? 'No HighPeaks Lietuva registrations for this distance.' : 'No HighPeaks Lietuva registrations yet.';
+        const msg = allRegs.length ? 'No HighPeaks Lietuva registrations for this filter.' : 'No HighPeaks Lietuva registrations yet.';
         return `
         <div class="stage-card">
           <div class="stage-card-head">
@@ -674,6 +778,82 @@ function renderUpcoming() {
       <h2>Upcoming races</h2>
       <p class="lede">HighPeaks Lietuva registrations for races that haven't happened yet</p>
       ${cards}
+    </div>
+  `;
+}
+
+function renderStandings() {
+  const container = document.getElementById('standingsSection');
+  const seasons = Object.keys(clubStandingsData).sort((a, b) => b - a);
+
+  if (!seasons.length) {
+    container.innerHTML = '<p class="no-upcoming">No club standings data yet.</p>';
+    return;
+  }
+
+  const selectedSeason = document.getElementById('seasonFilter').value;
+  const season = seasons.includes(selectedSeason) ? selectedSeason : seasons[0];
+  const data = clubStandingsData[season];
+
+  if (!data || !data.clubs.length) {
+    container.innerHTML = `<p class="no-upcoming">No club standings data for ${season}.</p>`;
+    return;
+  }
+
+  const rows = data.clubs.map(c => `
+    <tr class="${c.club === 'HighPeaks Lietuva' ? 'own-club' : ''}">
+      <td class="st-place ${isTop3(c.place) ? 'podium' : ''}">${c.place}</td>
+      <td class="st-club">${c.club}</td>
+      ${c.stage_points.map(p => `<td class="st-num">${p}</td>`).join('')}
+      <td class="st-num st-total">${c.total}</td>
+      <td class="st-num">${c.participants}</td>
+    </tr>
+  `).join('');
+
+  const hpIndex = data.clubs.findIndex(c => c.club === 'HighPeaks Lietuva');
+  let bannerHtml;
+  if (hpIndex === -1) {
+    bannerHtml = `<div class="standings-banner">
+      <span class="standings-banner-place">Not in the top ${data.clubs.length}</span>
+      <span class="standings-banner-detail">HighPeaks Lietuva isn't in the top ${data.clubs.length} clubs for ${season}.</span>
+    </div>`;
+  } else {
+    const hp = data.clubs[hpIndex];
+    const hpTotal = parseInt(hp.total, 10) || 0;
+    if (hpIndex === 0) {
+      const second = data.clubs[1];
+      const gap = second ? hpTotal - (parseInt(second.total, 10) || 0) : null;
+      bannerHtml = `<div class="standings-banner standings-banner-lead">
+        <span class="standings-banner-place">🥇 1st place</span>
+        <span class="standings-banner-detail">${second ? `${gap.toLocaleString()} points ahead of ${second.club} (2nd)` : 'The only club in this standings.'}</span>
+      </div>`;
+    } else {
+      const leader = data.clubs[0];
+      const gap = (parseInt(leader.total, 10) || 0) - hpTotal;
+      bannerHtml = `<div class="standings-banner">
+        <span class="standings-banner-place">${ordinal(hpIndex + 1)} place</span>
+        <span class="standings-banner-detail">${gap.toLocaleString()} points behind ${leader.club} (1st) to take the lead</span>
+      </div>`;
+    }
+  }
+
+  container.innerHTML = `
+    <div class="standings">
+      <h2>Club standings — ${season}</h2>
+      <p class="standings-lede">Top ${data.clubs.length} clubs in the Lietuvos Triatlono Taurė "Klubų įskaita" leaderboard</p>
+      ${bannerHtml}
+      <div class="standings-scroll">
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th>Place</th><th>Club</th>
+              ${data.stage_labels.map(l => `<th>${l}</th>`).join('')}
+              <th>Total</th><th>Participants</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
     </div>
   `;
 }
@@ -748,15 +928,17 @@ function switchTab(tab) {
   document.getElementById('tabBtnResults').classList.toggle('active', tab === 'results');
   document.getElementById('tabBtnUpcoming').classList.toggle('active', tab === 'upcoming');
   document.getElementById('tabBtnLeaderboards').classList.toggle('active', tab === 'leaderboards');
+  document.getElementById('tabBtnStandings').classList.toggle('active', tab === 'standings');
   document.getElementById('resultsView').style.display = tab === 'results' ? '' : 'none';
   document.getElementById('upcomingView').style.display = tab === 'upcoming' ? '' : 'none';
   document.getElementById('leaderboardsView').style.display = tab === 'leaderboards' ? '' : 'none';
+  document.getElementById('standingsView').style.display = tab === 'standings' ? '' : 'none';
   document.getElementById('resultsOnlyControls').style.display = tab === 'results' ? 'contents' : 'none';
   document.getElementById('upcomingOnlyControls').style.display = tab === 'upcoming' ? 'contents' : 'none';
   document.getElementById('leaderboardsOnlyControls').style.display = tab === 'leaderboards' ? 'contents' : 'none';
 }
 
-['tabBtnResults','tabBtnUpcoming','tabBtnLeaderboards'].forEach(id =>
+['tabBtnResults','tabBtnUpcoming','tabBtnLeaderboards','tabBtnStandings'].forEach(id =>
   document.getElementById(id).addEventListener('click', e => switchTab(e.target.dataset.tab))
 );
 
@@ -766,13 +948,15 @@ function switchTab(tab) {
     render();
     renderUpcoming();
     renderLeaderboards();
+    renderStandings();
   })
 );
-['stageFilter','distanceFilter','genderFilter'].forEach(id =>
+['stageFilter','distanceFilter','genderFilter','ageGroupFilter'].forEach(id =>
   document.getElementById(id).addEventListener('change', render)
 );
 document.getElementById('athleteSearch').addEventListener('input', render);
 document.getElementById('upcomingDistanceFilter').addEventListener('change', renderUpcoming);
+document.getElementById('upcomingGenderFilter').addEventListener('change', renderUpcoming);
 document.getElementById('lbGenderFilter').addEventListener('change', renderLeaderboards);
 
 loadData();

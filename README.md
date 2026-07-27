@@ -17,12 +17,17 @@ scraper/scrape.py   →  1. walks season IDs, calling the stage-list API to disc
                           where CLUB == "HighPeaks Lietuva"
                        3. for upcoming races: calls the participants API,
                           filters registrants by club, and records payment status
+                       4. calls the all-stages endpoint to find each season's
+                          "Klubų įskaita" (club standings) aggregate stage, then
+                          fetches its club leaderboard (top 10, with per-stage points)
                        │
                        ├─ data/all_results_raw.json   (every athlete, every club — full archive)
                        ├─ docs/data.json              (just HighPeaks Lietuva results)
                        ├─ docs/stage_names.json       (stage id -> real name/date label)
-                       └─ docs/upcoming.json          (per upcoming stage: HighPeaks
-                                                        registrants + paid/unpaid status)
+                       ├─ docs/upcoming.json          (per upcoming stage: HighPeaks
+                       │                                registrants + paid/unpaid status)
+                       └─ docs/club_standings.json    (per season: top 10 clubs, total +
+                                                        per-stage points, from "Klubų įskaita")
 
 docs/index.html      →  static dashboard, fetches all of the above directly
                          (same folder, no CORS issues)
@@ -30,7 +35,7 @@ docs/index.html      →  static dashboard, fetches all of the above directly
 .github/workflows/scrape.yml → runs the scraper on a schedule and commits updated data automatically
 ```
 
-Three API endpoints, all found via browser devtools (not publicly documented):
+Four API endpoints, all found via browser devtools (not publicly documented):
 
 ```
 GET https://www.triatlonotaure.lt/api/stages?season={season_id}
@@ -42,6 +47,15 @@ GET https://www.triatlonotaure.lt/api/stages/{stage_id}/results?page=0&size=100&
 GET https://www.triatlonotaure.lt/api/stages/{stage_id}/participants?page=0&size=100&query=&participantType=all&distance=
     → registration list for a race that hasn't happened yet, including "payed" (bool)
       and "payment": {"payed": bool, "price": "45.00"}
+
+GET https://www.triatlonotaure.lt/api/results
+    → flat list of every stage across every season, including the season-wide
+      aggregate entries (global_results_stage: true). The one named "Klubų įskaita"
+      is that season's club-standings leaderboard; its id is then used as
+      {stage_id} in:
+GET https://www.triatlonotaure.lt/api/stages/{stage_id}/results?page=0&size=20&query=&distance=klubai
+    → club standings for that season: place, club name, points per real stage
+      (0 for stages that haven't happened yet), season total, and participant count
 ```
 
 Each result row already carries its own `"distance"` field, so even if a
@@ -81,7 +95,7 @@ Useful flags:
 2. In the repo settings → **Pages**, set the source to the `docs/` folder on
    your default branch. GitHub will give you a free URL like
    `https://yourusername.github.io/highpeaks-triathlon/`.
-3. The included workflow (`.github/workflows/scrape.yml`) runs every 6 hours
+3. The included workflow (`.github/workflows/scrape.yml`) runs nightly
    and re-commits fresh data automatically. You can also trigger it manually
    from the **Actions** tab (`Run workflow` button) any time — e.g. right
    after this first push, so you don't have to wait for the next scheduled run.
