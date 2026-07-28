@@ -31,6 +31,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/all_results_raw.json docs/data.json docs/stage_names.json docs/upcoming.json docs/club_standings.json
+          git add data/all_results_raw.json docs/data.json docs/stage_names.json docs/upcoming.json docs/club_standings.json docs/distance_names.json
           git diff --cached --quiet || git commit -m "Update scraped results [automated]"
           git push

@@ -12,11 +12,15 @@ scraper/scrape.py   →  1. walks season IDs, calling the stage-list API to disc
                           every real race (with its actual name/date/address),
                           split into completed (has_results: true) and
                           upcoming (has_results: false)
-                       2. for completed races: calls the results API for both
-                          distances (od = Olimpinė, sd = Sprinto), filters rows
-                          where CLUB == "HighPeaks Lietuva"
-                       3. for upcoming races: calls the participants API,
-                          filters registrants by club, and records payment status
+                       2. for completed races: calls the results API once per
+                          distance that stage actually offered (read from that
+                          stage's own `distances` list — od/sd plus whatever
+                          else it had: trifun, vaikai, relay "-est" variants,
+                          splash, super sprint, etc — never hardcoded), filters
+                          rows where CLUB == "HighPeaks Lietuva"
+                       3. for upcoming races: calls the participants API (all
+                          distances at once), filters registrants by club, and
+                          records payment status
                        4. calls the all-stages endpoint to find each season's
                           "Klubų įskaita" (club standings) aggregate stage, then
                           fetches its club leaderboard (top 10, with per-stage points)
@@ -26,8 +30,10 @@ scraper/scrape.py   →  1. walks season IDs, calling the stage-list API to disc
                        ├─ docs/stage_names.json       (stage id -> real name/date label)
                        ├─ docs/upcoming.json          (per upcoming stage: HighPeaks
                        │                                registrants + paid/unpaid status)
-                       └─ docs/club_standings.json    (per season: top 10 clubs, total +
-                                                        per-stage points, from "Klubų įskaita")
+                       ├─ docs/club_standings.json    (per season: top 10 clubs, total +
+                       │                                per-stage points, from "Klubų įskaita")
+                       └─ docs/distance_names.json    (distance code -> display name,
+                                                        e.g. "od" -> "Olimpinė distancija")
 
 docs/index.html      →  static dashboard, fetches all of the above directly
                          (same folder, no CORS issues)
@@ -39,10 +45,14 @@ Four API endpoints, all found via browser devtools (not publicly documented):
 
 ```
 GET https://www.triatlonotaure.lt/api/stages?season={season_id}
-    → real stage names, dates, addresses, and a has_results flag for that season
+    → real stage names, dates, addresses, a has_results flag, and a `distances`
+      array (each stage's actual set of distance codes - varies per race)
+      for that season
 
-GET https://www.triatlonotaure.lt/api/stages/{stage_id}/results?page=0&size=100&query=&distance=od
-    → od = Olimpinė distancija, sd = Sprinto distancija (for races that already happened)
+GET https://www.triatlonotaure.lt/api/stages/{stage_id}/results?page=0&size=100&query=&distance={code}
+    → results for one distance of a race that already happened; {code} comes
+      from that stage's own `distances[].code` above (od, sd, trifun, vaikai,
+      splash, "-est" relay variants, etc — not just od/sd)
 
 GET https://www.triatlonotaure.lt/api/stages/{stage_id}/participants?page=0&size=100&query=&participantType=all&distance=
     → registration list for a race that hasn't happened yet, including "payed" (bool)

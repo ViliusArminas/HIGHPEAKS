@@ -6,16 +6,20 @@ Three API endpoints are used (all discovered via browser devtools):
 
 1) Stage list, per season:
    GET https://www.triatlonotaure.lt/api/stages?season={season_id}
-   Returns real stage names, dates, addresses, and a `has_results` flag.
-   Some entries in this list are NOT individual races - they're season-wide
-   aggregates (e.g. "Klubų įskaita" / club standings, or per-age-group combined
-   results) and are marked `global_results_stage: true` / `show_in_main_window: false`.
-   Those are skipped here since they don't represent a single race someone competed in.
+   Returns real stage names, dates, addresses, a `has_results` flag, and a
+   `distances` array - the actual set of distance codes offered at that
+   stage (varies per race: od, sd, trifun, vaikai, splash, relay "-est"
+   variants, ssd, etc). Some entries in this list are NOT individual races -
+   they're season-wide aggregates (e.g. "Klubų įskaita" / club standings, or
+   per-age-group combined results) and are marked `global_results_stage: true`
+   / `show_in_main_window: false`. Those are skipped here since they don't
+   represent a single race someone competed in.
 
 2) Results for a stage that already happened (has_results: true):
    GET https://www.triatlonotaure.lt/api/stages/{stage_id}/results
-       ?page=0&size=100&query=&distance=od   (od = Olimpine distancija)
-       ?page=0&size=100&query=&distance=sd   (sd = Sprinto distancija)
+       ?page=0&size=100&query=&distance={code}
+   {code} is one of that stage's own `distances[].code` values from (1) -
+   NOT a hardcoded od/sd, since which distances exist varies per race.
    Each record: {"id":..., "distance":"od", "row":[...], "titles":[...], "stageId":...}
    "row"/"titles" line up positionally and are zipped into a flat dict.
 
@@ -59,7 +63,7 @@ PARTICIPANTS_URL = "https://www.triatlonotaure.lt/api/stages/{stage_id}/particip
 CLUB_STANDINGS_NAME = "klubų įskaita"
 CLUB_STANDINGS_TOP_N = 10
 
-DISTANCES = ["od", "sd"]  # Olimpine distancija, Sprinto distancija
+FALLBACK_DISTANCES = ["od", "sd"]  # used only if a stage's own `distances` list is missing
 PAGE_SIZE = 100
 REQUEST_DELAY_SECONDS = 0.4  # be polite to their server
 TIMEOUT = 15
@@ -110,6 +114,11 @@ def discover_all_stages(session, max_seasons=30):
                 "date": stage.get("stage_date"),
                 "address": stage.get("address"),
                 "season_name": (stage.get("season") or {}).get("name"),
+                "distances": [
+                    {"code": d.get("code"), "name": d.get("name")}
+                    for d in (stage.get("distances") or [])
+                    if d.get("code")
+                ],
             }
             if stage.get("has_results"):
                 completed[stage["id"]] = info
@@ -309,7 +318,7 @@ def build_club_standings(session):
 
 
 def scrape(club_name, out_raw_path, out_filtered_path, out_stage_names_path,
-           out_upcoming_path, out_club_standings_path, max_seasons):
+           out_upcoming_path, out_club_standings_path, out_distance_names_path, max_seasons):
     session = requests.Session()
     session.headers.update({"User-Agent": "highpeaks-results-scraper/1.0"})
 
@@ -318,24 +327,32 @@ def scrape(club_name, out_raw_path, out_filtered_path, out_stage_names_path,
     print(f"  filtered data   -> {Path(out_filtered_path).resolve()}")
     print(f"  stage names     -> {Path(out_stage_names_path).resolve()}")
     print(f"  upcoming/regs   -> {Path(out_upcoming_path).resolve()}")
-    print(f"  club standings  -> {Path(out_club_standings_path).resolve()}\n")
+    print(f"  club standings  -> {Path(out_club_standings_path).resolve()}")
+    print(f"  distance names  -> {Path(out_distance_names_path).resolve()}\n")
 
     completed_stages, upcoming_stages = discover_all_stages(session, max_seasons=max_seasons)
     print(f"\nFound {len(completed_stages)} completed races and "
           f"{len(upcoming_stages)} upcoming races.\n")
 
-    # --- Completed races: pull results ---
+    # --- Completed races: pull results, one call per distance the stage actually offered ---
     all_records = []
+    distance_names = {}
     for stage_id, info in sorted(completed_stages.items()):
+        distance_codes = [d["code"] for d in info.get("distances", []) if d.get("code")] or FALLBACK_DISTANCES
+        for d in info.get("distances", []):
+            if d.get("code") and d.get("name"):
+                distance_names[d["code"]] = d["name"]
+
         stage_had_data = False
-        for distance in DISTANCES:
+        for distance in distance_codes:
             records = fetch_stage_distance(session, stage_id, distance)
             if records:
                 stage_had_data = True
                 all_records.extend(record_to_dict(r) for r in records)
             time.sleep(REQUEST_DELAY_SECONDS)
         print(f"Results - stage {stage_id} ({stage_label(info)}): "
-              f"{'OK' if stage_had_data else 'no results returned'}")
+              f"{'OK' if stage_had_data else 'no results returned'} "
+              f"[{', '.join(distance_codes)}]")
 
     Path(out_raw_path).parent.mkdir(parents=True, exist_ok=True)
     with open(out_raw_path, "w", encoding="utf-8") as f:
@@ -351,6 +368,9 @@ def scrape(club_name, out_raw_path, out_filtered_path, out_stage_names_path,
     # --- Upcoming races: pull registrations/participants ---
     upcoming_output = {}
     for stage_id, info in sorted(upcoming_stages.items()):
+        for d in info.get("distances", []):
+            if d.get("code") and d.get("name"):
+                distance_names[d["code"]] = d["name"]
         participants = fetch_stage_participants(session, stage_id)
         club_participants = [
             participant_to_dict(p) for p in participants
@@ -380,6 +400,12 @@ def scrape(club_name, out_raw_path, out_filtered_path, out_stage_names_path,
         json.dump(stage_names, f, ensure_ascii=False, indent=2)
     print(f"Saved names for {len(stage_names)} stages to {out_stage_names_path}")
 
+    # --- Distance code -> display name map (varies per race: od, sd, trifun, vaikai...) ---
+    Path(out_distance_names_path).parent.mkdir(parents=True, exist_ok=True)
+    with open(out_distance_names_path, "w", encoding="utf-8") as f:
+        json.dump(distance_names, f, ensure_ascii=False, indent=2)
+    print(f"Saved names for {len(distance_names)} distance codes to {out_distance_names_path}")
+
     # --- Club standings ("Klubų įskaita"), one leaderboard per season ---
     print("\nFetching club standings ('Klubų įskaita') per season...")
     club_standings = build_club_standings(session)
@@ -404,10 +430,12 @@ def main():
                          help="Path for upcoming-race registrations (payment status etc)")
     parser.add_argument("--out-club-standings", default=str(PROJECT_ROOT / "docs" / "club_standings.json"),
                          help="Path for the per-season club standings ('Klubų įskaita') leaderboards")
+    parser.add_argument("--out-distance-names", default=str(PROJECT_ROOT / "docs" / "distance_names.json"),
+                         help="Path for the distance code -> display name map")
     args = parser.parse_args()
 
     scrape(args.club, args.out_raw, args.out_filtered, args.out_stage_names,
-           args.out_upcoming, args.out_club_standings, args.max_seasons)
+           args.out_upcoming, args.out_club_standings, args.out_distance_names, args.max_seasons)
 
 
 if __name__ == "__main__":
