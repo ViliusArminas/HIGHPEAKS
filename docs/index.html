@@ -420,6 +420,10 @@ function isTop3(v) {
   return ['1', '2', '3'].includes(String(v));
 }
 
+function isOwnClub(clubName) {
+  return (clubName || '').trim().toLowerCase() === 'highpeaks lietuva';
+}
+
 function ordinal(n) {
   const v = n % 100;
   if (v >= 11 && v <= 13) return `${n}th`;
@@ -940,7 +944,7 @@ function renderStandings() {
   }
 
   const rows = data.clubs.map(c => `
-    <tr class="${c.club === 'HighPeaks Lietuva' ? 'own-club' : ''}">
+    <tr class="${isOwnClub(c.club) ? 'own-club' : ''}">
       <td class="st-place ${isTop3(c.place) ? 'podium' : ''}">${c.place}</td>
       <td class="st-club">${c.club}</td>
       ${c.stage_points.map(p => `<td class="st-num">${p}</td>`).join('')}
@@ -949,7 +953,7 @@ function renderStandings() {
     </tr>
   `).join('');
 
-  const hpIndex = data.clubs.findIndex(c => c.club === 'HighPeaks Lietuva');
+  const hpIndex = data.clubs.findIndex(c => isOwnClub(c.club));
   let bannerHtml;
   if (hpIndex === -1) {
     bannerHtml = `<div class="standings-banner">

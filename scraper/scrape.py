@@ -359,7 +359,8 @@ def scrape(club_name, out_raw_path, out_filtered_path, out_stage_names_path,
         json.dump(all_records, f, ensure_ascii=False, indent=2)
     print(f"\nSaved {len(all_records)} total result rows to {out_raw_path}")
 
-    filtered = [r for r in all_records if (r.get("CLUB") or "").strip() == club_name]
+    club_name_lower = club_name.strip().lower()
+    filtered = [r for r in all_records if (r.get("CLUB") or "").strip().lower() == club_name_lower]
     Path(out_filtered_path).parent.mkdir(parents=True, exist_ok=True)
     with open(out_filtered_path, "w", encoding="utf-8") as f:
         json.dump(filtered, f, ensure_ascii=False, indent=2)
@@ -374,7 +375,7 @@ def scrape(club_name, out_raw_path, out_filtered_path, out_stage_names_path,
         participants = fetch_stage_participants(session, stage_id)
         club_participants = [
             participant_to_dict(p) for p in participants
-            if (p.get("club") or "").strip() == club_name
+            if (p.get("club") or "").strip().lower() == club_name_lower
         ]
         upcoming_output[str(stage_id)] = {
             "stage_name": info.get("name"),
