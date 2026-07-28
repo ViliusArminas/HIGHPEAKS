@@ -663,11 +663,7 @@
     "stage_name": "SKAUDVILĖS TRIATLONAS - LTT 5",
     "stage_date": "2026-08-16T05:30:00.000Z",
     "address": "Skaudvilė",
-<<<<<<< HEAD
     "total_participants": 145,
-=======
-    "total_participants": 144,
->>>>>>> 3640cee6439c6e14dd8ae9977435a1a5cb96dfef
     "club_registrations": [
       {
         "displayName": "Agnė Masėnaitė",
@@ -927,11 +923,7 @@
     "stage_name": "MOLĖTŲ TRIATLONAS - LTT 6",
     "stage_date": "2026-08-23T05:30:00.000Z",
     "address": "Molėtai",
-<<<<<<< HEAD
     "total_participants": 155,
-=======
-    "total_participants": 153,
->>>>>>> 3640cee6439c6e14dd8ae9977435a1a5cb96dfef
     "club_registrations": [
       {
         "displayName": "Arūnas Krikštaponis",
@@ -1215,11 +1207,7 @@
     "stage_name": "DRUSKININKŲ TRIATLONAS - LTT 7",
     "stage_date": "2026-09-05T04:00:00.000Z",
     "address": "Vijūnėlės parkas, Druskininkai",
-<<<<<<< HEAD
     "total_participants": 202,
-=======
-    "total_participants": 193,
->>>>>>> 3640cee6439c6e14dd8ae9977435a1a5cb96dfef
     "club_registrations": [
       {
         "displayName": "Agnė Masėnaitė",
