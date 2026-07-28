@@ -102,10 +102,12 @@
   thead th{
     text-align:left;font-family:'JetBrains Mono',monospace;font-weight:400;
     font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);
-    padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none;
+    padding:10px 12px;border-bottom:1px solid var(--line);user-select:none;
     white-space:nowrap;
   }
-  thead th:hover{color:var(--text);}
+  thead th.sortable{cursor:pointer;}
+  thead th.sortable:hover{color:var(--text);}
+  thead th.sortable.active{color:var(--accent-warm);}
   tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle;}
   tbody tr:hover{background:var(--bg-panel);}
   .name{font-weight:600;}
@@ -387,6 +389,8 @@ let distanceNames = {};
 let chart = null;
 let genderByName = null;
 let upcomingCardDistance = {}; // stageId -> selected distance_name, per upcoming-race card
+let sortColumn = 'POS';
+let sortDirection = 'asc';
 
 function distanceLabel(code) {
   return distanceNames[code] || (code || '').toUpperCase();
@@ -734,13 +738,29 @@ function renderTable(rows) {
     return;
   }
 
-  const sorted = [...rows].sort((a,b) => (Number(a['POS'])||999) - (Number(b['POS'])||999));
+  const sortValue = (r, col) => {
+    const v = Number(r[col]);
+    return Number.isFinite(v) ? v : Infinity; // non-numeric (-, DNF, *) always sort last
+  };
+  const sorted = [...rows].sort((a, b) => {
+    const av = sortValue(a, sortColumn);
+    const bv = sortValue(b, sortColumn);
+    if (av === Infinity && bv === Infinity) return 0;
+    if (av === Infinity) return 1;
+    if (bv === Infinity) return -1;
+    return sortDirection === 'asc' ? av - bv : bv - av;
+  });
+
+  const sortArrow = col => sortColumn === col ? (sortDirection === 'asc' ? ' ▲' : ' ▼') : '';
+  const sortClass = col => `sortable${sortColumn === col ? ' active' : ''}`;
 
   wrap.innerHTML = `
   <table>
     <thead>
       <tr>
-        <th>Pos</th><th>Gender pos</th><th>AG pos</th><th>Athlete</th><th>Distance</th>
+        <th class="${sortClass('POS')}" data-sort="POS">Pos${sortArrow('POS')}</th>
+        <th class="${sortClass('GENDER POS')}" data-sort="GENDER POS">Gender pos${sortArrow('GENDER POS')}</th>
+        <th>AG pos</th><th>Athlete</th><th>Distance</th>
         <th>Total</th><th>Split</th><th>Age group</th><th>Club points</th>
       </tr>
     </thead>
@@ -1112,6 +1132,18 @@ document.getElementById('stageFilter').addEventListener('change', () => {
   document.getElementById(id).addEventListener('change', render)
 );
 document.getElementById('athleteSearch').addEventListener('input', render);
+document.getElementById('tableWrap').addEventListener('click', e => {
+  const th = e.target.closest('th[data-sort]');
+  if (!th) return;
+  const col = th.dataset.sort;
+  if (sortColumn === col) {
+    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortColumn = col;
+    sortDirection = 'asc';
+  }
+  render();
+});
 document.getElementById('upcomingGenderFilter').addEventListener('change', renderUpcoming);
 document.getElementById('upcomingSection').addEventListener('change', e => {
   if (e.target.classList.contains('card-distance-filter')) {
