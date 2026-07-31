@@ -687,7 +687,7 @@
     "stage_name": "SKAUDVILĖS TRIATLONAS - LTT 5",
     "stage_date": "2026-08-16T05:30:00.000Z",
     "address": "Skaudvilė",
-    "total_participants": 149,
+    "total_participants": 151,
     "club_registrations": [
       {
         "displayName": "Agnė Masėnaitė",
@@ -947,7 +947,7 @@
     "stage_name": "MOLĖTŲ TRIATLONAS - LTT 6",
     "stage_date": "2026-08-23T05:30:00.000Z",
     "address": "Molėtai",
-    "total_participants": 159,
+    "total_participants": 164,
     "club_registrations": [
       {
         "displayName": "Arūnas Krikštaponis",
@@ -1243,7 +1243,7 @@
     "stage_name": "DRUSKININKŲ TRIATLONAS - LTT 7",
     "stage_date": "2026-09-05T04:00:00.000Z",
     "address": "Vijūnėlės parkas, Druskininkai",
-    "total_participants": 213,
+    "total_participants": 225,
     "club_registrations": [
       {
         "displayName": "Agne Mockus",
@@ -1294,6 +1294,18 @@
         "_stage_id": 141
       },
       {
+        "displayName": "Augustas Miliušas",
+        "first_name": "Augustas",
+        "last_name": "Miliušas",
+        "city": "Kaunas",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Vaikų distancija",
+        "distance_code": "vaikai",
+        "payed": true,
+        "price": "15.00",
+        "_stage_id": 141
+      },
+      {
         "displayName": "Aurimas Sadauskas",
         "first_name": "Aurimas",
         "last_name": "Sadauskas",
@@ -1325,6 +1337,30 @@
         "club": "Highpeaks Lietuva",
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
+        "payed": false,
+        "price": "45.00",
+        "_stage_id": 141
+      },
+      {
+        "displayName": "Dalia Rimkuvienė",
+        "first_name": "Dalia",
+        "last_name": "Rimkuvienė",
+        "city": "Šiauliai",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Olimpinė distancija",
+        "distance_code": "od",
+        "payed": false,
+        "price": "45.00",
+        "_stage_id": 141
+      },
+      {
+        "displayName": "Dalia Rimkuvienė",
+        "first_name": "Dalia",
+        "last_name": "Rimkuvienė",
+        "city": "Šiauliai",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Sprinto distancija",
+        "distance_code": "sd",
         "payed": false,
         "price": "45.00",
         "_stage_id": 141
