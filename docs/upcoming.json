@@ -687,7 +687,7 @@
     "stage_name": "SKAUDVILĖS TRIATLONAS - LTT 5",
     "stage_date": "2026-08-16T05:30:00.000Z",
     "address": "Skaudvilė",
-    "total_participants": 176,
+    "total_participants": 183,
     "club_registrations": [
       {
         "displayName": "Agnė Masėnaitė",
@@ -762,6 +762,18 @@
         "_stage_id": 139
       },
       {
+        "displayName": "Deividas Toleikis",
+        "first_name": "Deividas",
+        "last_name": "Toleikis",
+        "city": "Kaunas",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Olimpinė distancija",
+        "distance_code": "od",
+        "payed": true,
+        "price": "55.00",
+        "_stage_id": 139
+      },
+      {
         "displayName": "Dovile Rimute",
         "first_name": "Dovile",
         "last_name": "Rimute",
@@ -795,6 +807,18 @@
         "distance_code": "trifun",
         "payed": true,
         "price": "20.00",
+        "_stage_id": 139
+      },
+      {
+        "displayName": "Evaldas Kazlauskis",
+        "first_name": "Evaldas",
+        "last_name": "Kazlauskis",
+        "city": "Kaunas",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Sprinto distancija",
+        "distance_code": "sd",
+        "payed": true,
+        "price": "55.00",
         "_stage_id": 139
       },
       {
@@ -959,7 +983,7 @@
     "stage_name": "MOLĖTŲ TRIATLONAS - LTT 6",
     "stage_date": "2026-08-23T05:30:00.000Z",
     "address": "Molėtai",
-    "total_participants": 181,
+    "total_participants": 186,
     "club_registrations": [
       {
         "displayName": "Arūnas Krikštaponis",
@@ -1053,7 +1077,7 @@
         "club": "HighPeaks Lietuva",
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
-        "payed": false,
+        "payed": true,
         "price": "45.00",
         "_stage_id": 140
       },
@@ -1291,7 +1315,7 @@
     "stage_name": "DRUSKININKŲ TRIATLONAS - LTT 7",
     "stage_date": "2026-09-05T04:00:00.000Z",
     "address": "Vijūnėlės parkas, Druskininkai",
-    "total_participants": 296,
+    "total_participants": 299,
     "club_registrations": [
       {
         "displayName": "Agne Mockus",
@@ -1309,10 +1333,10 @@
         "displayName": "Agnė Masėnaitė",
         "first_name": "Agnė",
         "last_name": "Masėnaitė",
-        "city": "Kauno raj. sav.",
+        "city": "Ringaudai",
         "club": "HighPeaks Lietuva",
-        "distance_name": "Sprinto distancija",
-        "distance_code": "sd",
+        "distance_name": "Olimpinė distancija",
+        "distance_code": "od",
         "payed": false,
         "price": "45.00",
         "_stage_id": 141
@@ -1321,10 +1345,10 @@
         "displayName": "Agnė Masėnaitė",
         "first_name": "Agnė",
         "last_name": "Masėnaitė",
-        "city": "Ringaudai",
+        "city": "Kauno raj. sav.",
         "club": "HighPeaks Lietuva",
-        "distance_name": "Olimpinė distancija",
-        "distance_code": "od",
+        "distance_name": "Sprinto distancija",
+        "distance_code": "sd",
         "payed": false,
         "price": "45.00",
         "_stage_id": 141
@@ -1515,10 +1539,10 @@
         "last_name": "Griciūtė",
         "city": "Garliava",
         "club": "HighPeaks Lietuva",
-        "distance_name": "TRIFUN distancija",
-        "distance_code": "trifun",
+        "distance_name": "Vaikų distancija",
+        "distance_code": "vaikai",
         "payed": false,
-        "price": "20.00",
+        "price": "15.00",
         "_stage_id": 141
       },
       {
@@ -1527,10 +1551,10 @@
         "last_name": "Griciūtė",
         "city": "Garliava",
         "club": "HighPeaks Lietuva",
-        "distance_name": "Vaikų distancija",
-        "distance_code": "vaikai",
+        "distance_name": "TRIFUN distancija",
+        "distance_code": "trifun",
         "payed": false,
-        "price": "15.00",
+        "price": "20.00",
         "_stage_id": 141
       },
       {
@@ -1743,8 +1767,8 @@
         "last_name": "Mickus",
         "city": "Kaunas",
         "club": "HighPeaks Lietuva",
-        "distance_name": "Olimpinė distancija",
-        "distance_code": "od",
+        "distance_name": "Sprinto distancija",
+        "distance_code": "sd",
         "payed": false,
         "price": "45.00",
         "_stage_id": 141
@@ -1755,8 +1779,8 @@
         "last_name": "Mickus",
         "city": "Kaunas",
         "club": "HighPeaks Lietuva",
-        "distance_name": "Sprinto distancija",
-        "distance_code": "sd",
+        "distance_name": "Olimpinė distancija",
+        "distance_code": "od",
         "payed": false,
         "price": "45.00",
         "_stage_id": 141
@@ -1831,6 +1855,18 @@
         "distance_code": "od",
         "payed": false,
         "price": "45.00",
+        "_stage_id": 141
+      },
+      {
+        "displayName": "Paulius Vargalis",
+        "first_name": "Paulius",
+        "last_name": "Vargalis",
+        "city": "Klaipeda",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Sprinto distancija",
+        "distance_code": "sd",
+        "payed": true,
+        "price": "55.00",
         "_stage_id": 141
       },
       {
@@ -1937,7 +1973,7 @@
         "club": "HighPeaks Lietuva",
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
-        "payed": false,
+        "payed": true,
         "price": "45.00",
         "_stage_id": 141
       },
