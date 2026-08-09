@@ -687,7 +687,7 @@
     "stage_name": "SKAUDVILĖS TRIATLONAS - LTT 5",
     "stage_date": "2026-08-16T05:30:00.000Z",
     "address": "Skaudvilė",
-    "total_participants": 187,
+    "total_participants": 195,
     "club_registrations": [
       {
         "displayName": "Agnė Masėnaitė",
@@ -849,10 +849,10 @@
         "displayName": "Gintarė Ašmontaitė",
         "first_name": "Gintarė",
         "last_name": "Ašmontaitė",
-        "city": "Kaunas",
+        "city": "Vilnius",
         "club": "HighPeaks Lietuva",
-        "distance_name": "Olimpinė distancija",
-        "distance_code": "od",
+        "distance_name": "Sprinto distancija",
+        "distance_code": "sd",
         "payed": false,
         "price": "45.00",
         "_stage_id": 139
@@ -861,10 +861,10 @@
         "displayName": "Gintarė Ašmontaitė",
         "first_name": "Gintarė",
         "last_name": "Ašmontaitė",
-        "city": "Vilnius",
+        "city": "Kaunas",
         "club": "HighPeaks Lietuva",
-        "distance_name": "Sprinto distancija",
-        "distance_code": "sd",
+        "distance_name": "Olimpinė distancija",
+        "distance_code": "od",
         "payed": false,
         "price": "45.00",
         "_stage_id": 139
@@ -995,7 +995,7 @@
     "stage_name": "MOLĖTŲ TRIATLONAS - LTT 6",
     "stage_date": "2026-08-23T05:30:00.000Z",
     "address": "Molėtai",
-    "total_participants": 187,
+    "total_participants": 188,
     "club_registrations": [
       {
         "displayName": "Arūnas Krikštaponis",
@@ -1327,7 +1327,7 @@
     "stage_name": "DRUSKININKŲ TRIATLONAS - LTT 7",
     "stage_date": "2026-09-05T04:00:00.000Z",
     "address": "Vijūnėlės parkas, Druskininkai",
-    "total_participants": 302,
+    "total_participants": 304,
     "club_registrations": [
       {
         "displayName": "Agne Mockus",
