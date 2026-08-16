@@ -1067,7 +1067,7 @@
     "stage_name": "MOLĖTŲ TRIATLONAS - LTT 6",
     "stage_date": "2026-08-23T05:30:00.000Z",
     "address": "Molėtai",
-    "total_participants": 216,
+    "total_participants": 222,
     "club_registrations": [
       {
         "displayName": "Arūnas Krikštaponis",
@@ -1278,6 +1278,18 @@
         "first_name": "Mantas",
         "last_name": "Gricius",
         "city": "Garliava",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Olimpinė distancija",
+        "distance_code": "od",
+        "payed": false,
+        "price": "55.00",
+        "_stage_id": 140
+      },
+      {
+        "displayName": "Martynas Mickus",
+        "first_name": "Martynas",
+        "last_name": "Mickus",
+        "city": "Kaunas",
         "club": "HighPeaks Lietuva",
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
