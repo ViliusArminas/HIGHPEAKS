@@ -1244,12 +1244,12 @@
           "6078",
           "6345",
           "6626",
-          "0",
+          "6727",
           "0",
           "0"
         ],
-        "total": "26228",
-        "participants": "82"
+        "total": "32955",
+        "participants": "96"
       },
       {
         "place": "2",
@@ -1259,12 +1259,12 @@
           "6393",
           "6041",
           "7083",
-          "0",
+          "6749",
           "0",
           "0"
         ],
-        "total": "25791",
-        "participants": "105"
+        "total": "32540",
+        "participants": "125"
       },
       {
         "place": "3",
@@ -1274,12 +1274,12 @@
           "3714",
           "6986",
           "3684",
-          "0",
+          "2780",
           "0",
           "0"
         ],
-        "total": "19481",
-        "participants": "43"
+        "total": "22261",
+        "participants": "47"
       },
       {
         "place": "4",
@@ -1289,12 +1289,12 @@
           "3343",
           "5114",
           "4568",
-          "0",
+          "3296",
           "0",
           "0"
         ],
-        "total": "17125",
-        "participants": "53"
+        "total": "20421",
+        "participants": "61"
       },
       {
         "place": "5",
@@ -1304,60 +1304,75 @@
           "4714",
           "4393",
           "2473",
-          "0",
+          "1458",
           "0",
           "0"
         ],
-        "total": "16437",
-        "participants": "53"
+        "total": "17895",
+        "participants": "55"
       },
       {
         "place": "6",
-        "club": "S-Sportas",
-        "stage_points": [
-          "3154",
-          "3041",
-          "2122",
-          "2326",
-          "0",
-          "0",
-          "0"
-        ],
-        "total": "10643",
-        "participants": "18"
-      },
-      {
-        "place": "7",
         "club": "Kauno Triatlono Klubas",
         "stage_points": [
           "2317",
           "1812",
           "2571",
           "3720",
-          "0",
+          "2740",
           "0",
           "0"
         ],
-        "total": "10420",
-        "participants": "16"
+        "total": "13160",
+        "participants": "20"
+      },
+      {
+        "place": "7",
+        "club": "S-Sportas",
+        "stage_points": [
+          "3154",
+          "3041",
+          "2122",
+          "2326",
+          "1475",
+          "0",
+          "0"
+        ],
+        "total": "12118",
+        "participants": "20"
       },
       {
         "place": "8",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "703",
+          "2102",
+          "2158",
+          "741",
+          "1438",
+          "0",
+          "0"
+        ],
+        "total": "7142",
+        "participants": "11"
+      },
+      {
+        "place": "9",
         "club": "Love Streams Running",
         "stage_points": [
           "1099",
           "0",
           "2616",
           "2735",
-          "0",
+          "572",
           "0",
           "0"
         ],
-        "total": "6450",
-        "participants": "11"
+        "total": "7022",
+        "participants": "12"
       },
       {
-        "place": "9",
+        "place": "10",
         "club": "Trakų sporto centras",
         "stage_points": [
           "1000",
@@ -1370,21 +1385,6 @@
         ],
         "total": "5716",
         "participants": "6"
-      },
-      {
-        "place": "10",
-        "club": "Marijampolės triatlono draugija",
-        "stage_points": [
-          "703",
-          "2102",
-          "2158",
-          "741",
-          "0",
-          "0",
-          "0"
-        ],
-        "total": "5704",
-        "participants": "9"
       }
     ]
   }
