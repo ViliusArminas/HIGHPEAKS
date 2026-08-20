@@ -42,7 +42,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "109.00",
+        "price": 35,
         "_stage_id": 44
       },
       {
@@ -54,7 +54,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "0.00",
+        "price": 12,
         "_stage_id": 44
       },
       {
@@ -66,7 +66,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "125.00",
+        "price": 16,
         "_stage_id": 44
       },
       {
@@ -78,7 +78,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "87.20",
+        "price": 92,
         "_stage_id": 44
       },
       {
@@ -90,7 +90,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "125.00",
+        "price": 61,
         "_stage_id": 44
       },
       {
@@ -102,7 +102,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "109.00",
+        "price": 49,
         "_stage_id": 44
       },
       {
@@ -114,7 +114,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "87.20",
+        "price": 41,
         "_stage_id": 44
       },
       {
@@ -126,7 +126,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "125.00",
+        "price": 66,
         "_stage_id": 44
       },
       {
@@ -138,7 +138,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "29.00",
+        "price": 46,
         "_stage_id": 44
       },
       {
@@ -150,7 +150,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "109.00",
+        "price": 88,
         "_stage_id": 44
       },
       {
@@ -162,7 +162,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "125.00",
+        "price": 10,
         "_stage_id": 44
       },
       {
@@ -174,7 +174,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "92.00",
+        "price": 89,
         "_stage_id": 44
       },
       {
@@ -186,7 +186,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "87.20",
+        "price": 81,
         "_stage_id": 44
       },
       {
@@ -198,7 +198,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "87.20",
+        "price": 83,
         "_stage_id": 44
       },
       {
@@ -210,7 +210,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "109.00",
+        "price": 22,
         "_stage_id": 44
       },
       {
@@ -222,7 +222,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "87.20",
+        "price": 61,
         "_stage_id": 44
       },
       {
@@ -234,7 +234,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "115.00",
+        "price": 90,
         "_stage_id": 44
       },
       {
@@ -246,7 +246,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "125.00",
+        "price": 68,
         "_stage_id": 44
       },
       {
@@ -258,7 +258,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "109.00",
+        "price": 80,
         "_stage_id": 44
       }
     ]
@@ -278,7 +278,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "149.00",
+        "price": 77,
         "_stage_id": 66
       },
       {
@@ -290,7 +290,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "149.00",
+        "price": 85,
         "_stage_id": 66
       },
       {
@@ -302,7 +302,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "149.00",
+        "price": 49,
         "_stage_id": 66
       },
       {
@@ -314,7 +314,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "119.20",
+        "price": 10,
         "_stage_id": 66
       },
       {
@@ -326,7 +326,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "149.00",
+        "price": 96,
         "_stage_id": 66
       },
       {
@@ -338,7 +338,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "149.00",
+        "price": 62,
         "_stage_id": 66
       },
       {
@@ -350,7 +350,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "149.00",
+        "price": 84,
         "_stage_id": 66
       },
       {
@@ -362,7 +362,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "149.00",
+        "price": 41,
         "_stage_id": 66
       },
       {
@@ -374,7 +374,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "149.00",
+        "price": 50,
         "_stage_id": 66
       },
       {
@@ -386,7 +386,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "35.00",
+        "price": 12,
         "_stage_id": 66
       },
       {
@@ -398,7 +398,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "149.00",
+        "price": 88,
         "_stage_id": 66
       },
       {
@@ -410,7 +410,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "159.00",
+        "price": 50,
         "_stage_id": 66
       },
       {
@@ -422,7 +422,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "149.00",
+        "price": 63,
         "_stage_id": 66
       },
       {
@@ -434,7 +434,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "119.20",
+        "price": 79,
         "_stage_id": 66
       },
       {
@@ -446,7 +446,7 @@
         "distance_name": "Olimpinė Distancija",
         "distance_code": "OD",
         "payed": true,
-        "price": "119.20",
+        "price": 73,
         "_stage_id": 66
       },
       {
@@ -458,7 +458,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "119.20",
+        "price": 0,
         "_stage_id": 66
       },
       {
@@ -470,7 +470,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "149.00",
+        "price": 79,
         "_stage_id": 66
       },
       {
@@ -482,7 +482,7 @@
         "distance_name": "Sprinto Distancija",
         "distance_code": "SD",
         "payed": true,
-        "price": "113.24",
+        "price": 66,
         "_stage_id": 66
       }
     ]
@@ -502,7 +502,7 @@
         "distance_name": "OD",
         "distance_code": "OD",
         "payed": true,
-        "price": "270.00",
+        "price": 98,
         "_stage_id": 80
       },
       {
@@ -514,7 +514,7 @@
         "distance_name": "SD",
         "distance_code": "SD",
         "payed": true,
-        "price": "240.00",
+        "price": 92,
         "_stage_id": 80
       },
       {
@@ -526,7 +526,7 @@
         "distance_name": "OD + VIDUTINIS",
         "distance_code": "OD/70.30",
         "payed": true,
-        "price": "300.00",
+        "price": 26,
         "_stage_id": 80
       },
       {
@@ -538,7 +538,7 @@
         "distance_name": "SD",
         "distance_code": "SD",
         "payed": true,
-        "price": "240.00",
+        "price": 29,
         "_stage_id": 80
       },
       {
@@ -550,7 +550,7 @@
         "distance_name": "SD",
         "distance_code": "SD",
         "payed": true,
-        "price": "240.00",
+        "price": 88,
         "_stage_id": 80
       },
       {
@@ -562,7 +562,7 @@
         "distance_name": "SD",
         "distance_code": "SD",
         "payed": true,
-        "price": "270.00",
+        "price": 75,
         "_stage_id": 80
       },
       {
@@ -574,7 +574,7 @@
         "distance_name": "SD",
         "distance_code": "SD",
         "payed": true,
-        "price": "240.00",
+        "price": 64,
         "_stage_id": 80
       },
       {
@@ -586,7 +586,7 @@
         "distance_name": "OD + VIDUTINIS",
         "distance_code": "OD/70.30",
         "payed": true,
-        "price": "300.00",
+        "price": 9,
         "_stage_id": 80
       },
       {
@@ -598,7 +598,7 @@
         "distance_name": "OD + VIDUTINIS",
         "distance_code": "OD/70.30",
         "payed": true,
-        "price": "300.00",
+        "price": 17,
         "_stage_id": 80
       },
       {
@@ -610,7 +610,7 @@
         "distance_name": "OD",
         "distance_code": "OD",
         "payed": true,
-        "price": "240.00",
+        "price": 3,
         "_stage_id": 80
       },
       {
@@ -622,7 +622,7 @@
         "distance_name": "OD",
         "distance_code": "OD",
         "payed": true,
-        "price": "240.00",
+        "price": 52,
         "_stage_id": 80
       },
       {
@@ -634,7 +634,7 @@
         "distance_name": "SD",
         "distance_code": "SD",
         "payed": true,
-        "price": "240.00",
+        "price": 70,
         "_stage_id": 80
       },
       {
@@ -646,7 +646,7 @@
         "distance_name": "SD",
         "distance_code": "SD",
         "payed": true,
-        "price": "240.00",
+        "price": 57,
         "_stage_id": 80
       }
     ]
@@ -666,7 +666,7 @@
         "distance_name": "Olimpinė distancija (6 etapai)",
         "distance_code": "OD",
         "payed": true,
-        "price": "200.00",
+        "price": 31,
         "_stage_id": 97
       },
       {
@@ -678,7 +678,7 @@
         "distance_name": "Sprinto distancija (6 etapai)",
         "distance_code": "SD",
         "payed": true,
-        "price": "200.00",
+        "price": 9,
         "_stage_id": 97
       }
     ]
@@ -687,7 +687,7 @@
     "stage_name": "MOLĖTŲ TRIATLONAS - LTT 6",
     "stage_date": "2026-08-23T05:30:00.000Z",
     "address": "Molėtai",
-    "total_participants": 280,
+    "total_participants": 293,
     "club_registrations": [
       {
         "displayName": "Arūnas Krikštaponis",
@@ -698,7 +698,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 95,
         "_stage_id": 140
       },
       {
@@ -710,7 +710,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 71,
         "_stage_id": 140
       },
       {
@@ -722,7 +722,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 89,
         "_stage_id": 140
       },
       {
@@ -734,7 +734,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 56,
         "_stage_id": 140
       },
       {
@@ -746,7 +746,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 36,
         "_stage_id": 140
       },
       {
@@ -758,7 +758,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 86,
         "_stage_id": 140
       },
       {
@@ -770,7 +770,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 5,
         "_stage_id": 140
       },
       {
@@ -782,7 +782,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 98,
         "_stage_id": 140
       },
       {
@@ -794,7 +794,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "55.00",
+        "price": 66,
         "_stage_id": 140
       },
       {
@@ -806,7 +806,7 @@
         "distance_name": "TRIFUN distancija",
         "distance_code": "trifun",
         "payed": false,
-        "price": "25.00",
+        "price": 52,
         "_stage_id": 140
       },
       {
@@ -818,7 +818,7 @@
         "distance_name": "Vaikų distancija",
         "distance_code": "vaikai",
         "payed": false,
-        "price": "20.00",
+        "price": 66,
         "_stage_id": 140
       },
       {
@@ -830,7 +830,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 35,
         "_stage_id": 140
       },
       {
@@ -842,7 +842,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "55.00",
+        "price": 36,
         "_stage_id": 140
       },
       {
@@ -854,7 +854,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 59,
         "_stage_id": 140
       },
       {
@@ -866,7 +866,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 4,
         "_stage_id": 140
       },
       {
@@ -878,7 +878,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 36,
         "_stage_id": 140
       },
       {
@@ -890,7 +890,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 93,
         "_stage_id": 140
       },
       {
@@ -902,7 +902,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "55.00",
+        "price": 17,
         "_stage_id": 140
       },
       {
@@ -914,7 +914,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 45,
         "_stage_id": 140
       },
       {
@@ -926,7 +926,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "55.00",
+        "price": 28,
         "_stage_id": 140
       },
       {
@@ -938,7 +938,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 67,
         "_stage_id": 140
       },
       {
@@ -950,7 +950,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 69,
         "_stage_id": 140
       },
       {
@@ -962,7 +962,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 35,
         "_stage_id": 140
       },
       {
@@ -974,7 +974,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "55.00",
+        "price": 42,
         "_stage_id": 140
       },
       {
@@ -986,7 +986,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 31,
         "_stage_id": 140
       },
       {
@@ -998,7 +998,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "65.00",
+        "price": 21,
         "_stage_id": 140
       },
       {
@@ -1010,7 +1010,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 15,
         "_stage_id": 140
       },
       {
@@ -1022,7 +1022,7 @@
         "distance_name": "TRIFUN distancija",
         "distance_code": "trifun",
         "payed": true,
-        "price": "35.00",
+        "price": 99,
         "_stage_id": 140
       },
       {
@@ -1034,7 +1034,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "55.00",
+        "price": 21,
         "_stage_id": 140
       },
       {
@@ -1046,7 +1046,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 22,
         "_stage_id": 140
       }
     ]
@@ -1055,7 +1055,7 @@
     "stage_name": "DRUSKININKŲ TRIATLONAS - LTT 7",
     "stage_date": "2026-09-05T04:00:00.000Z",
     "address": "Vijūnėlės parkas, Druskininkai",
-    "total_participants": 371,
+    "total_participants": 382,
     "club_registrations": [
       {
         "displayName": "Agne Mockus",
@@ -1066,7 +1066,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 21,
         "_stage_id": 141
       },
       {
@@ -1078,7 +1078,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 55,
         "_stage_id": 141
       },
       {
@@ -1090,7 +1090,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 80,
         "_stage_id": 141
       },
       {
@@ -1102,7 +1102,19 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "55.00",
+        "price": 49,
+        "_stage_id": 141
+      },
+      {
+        "displayName": "Andrius Kazlauskas",
+        "first_name": "Andrius",
+        "last_name": "Kazlauskas",
+        "city": "KAUNAS",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Olimpinė distancija",
+        "distance_code": "od",
+        "payed": true,
+        "price": 78,
         "_stage_id": 141
       },
       {
@@ -1114,7 +1126,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 41,
         "_stage_id": 141
       },
       {
@@ -1126,7 +1138,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 58,
         "_stage_id": 141
       },
       {
@@ -1138,7 +1150,7 @@
         "distance_name": "Vaikų distancija",
         "distance_code": "vaikai",
         "payed": true,
-        "price": "15.00",
+        "price": 59,
         "_stage_id": 141
       },
       {
@@ -1150,7 +1162,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 91,
         "_stage_id": 141
       },
       {
@@ -1162,7 +1174,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 13,
         "_stage_id": 141
       },
       {
@@ -1174,19 +1186,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
-        "_stage_id": 141
-      },
-      {
-        "displayName": "Dalia Rimkuvienė",
-        "first_name": "Dalia",
-        "last_name": "Rimkuvienė",
-        "city": "Šiauliai",
-        "club": "HighPeaks Lietuva",
-        "distance_name": "Sprinto distancija",
-        "distance_code": "sd",
-        "payed": false,
-        "price": "45.00",
+        "price": 81,
         "_stage_id": 141
       },
       {
@@ -1198,7 +1198,19 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 61,
+        "_stage_id": 141
+      },
+      {
+        "displayName": "Dalia Rimkuvienė",
+        "first_name": "Dalia",
+        "last_name": "Rimkuvienė",
+        "city": "Šiauliai",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Sprinto distancija",
+        "distance_code": "sd",
+        "payed": false,
+        "price": 58,
         "_stage_id": 141
       },
       {
@@ -1210,7 +1222,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 50,
         "_stage_id": 141
       },
       {
@@ -1222,7 +1234,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "55.00",
+        "price": 28,
         "_stage_id": 141
       },
       {
@@ -1234,7 +1246,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 19,
         "_stage_id": 141
       },
       {
@@ -1246,7 +1258,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 97,
         "_stage_id": 141
       },
       {
@@ -1258,7 +1270,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 46,
         "_stage_id": 141
       },
       {
@@ -1270,7 +1282,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 32,
         "_stage_id": 141
       },
       {
@@ -1282,7 +1294,7 @@
         "distance_name": "TRIFUN distancija",
         "distance_code": "trifun",
         "payed": false,
-        "price": "20.00",
+        "price": 0,
         "_stage_id": 141
       },
       {
@@ -1294,7 +1306,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 72,
         "_stage_id": 141
       },
       {
@@ -1306,7 +1318,7 @@
         "distance_name": "Vaikų distancija",
         "distance_code": "vaikai",
         "payed": false,
-        "price": "15.00",
+        "price": 58,
         "_stage_id": 141
       },
       {
@@ -1318,7 +1330,7 @@
         "distance_name": "TRIFUN distancija",
         "distance_code": "trifun",
         "payed": false,
-        "price": "20.00",
+        "price": 66,
         "_stage_id": 141
       },
       {
@@ -1330,7 +1342,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 56,
         "_stage_id": 141
       },
       {
@@ -1342,7 +1354,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 22,
         "_stage_id": 141
       },
       {
@@ -1354,7 +1366,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 23,
         "_stage_id": 141
       },
       {
@@ -1366,19 +1378,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
-        "_stage_id": 141
-      },
-      {
-        "displayName": "Gintarė Ašmontaitė",
-        "first_name": "Gintarė",
-        "last_name": "Ašmontaitė",
-        "city": "Kaunas",
-        "club": "HighPeaks Lietuva",
-        "distance_name": "Sprinto distancija",
-        "distance_code": "sd",
-        "payed": false,
-        "price": "45.00",
+        "price": 45,
         "_stage_id": 141
       },
       {
@@ -1390,7 +1390,19 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 54,
+        "_stage_id": 141
+      },
+      {
+        "displayName": "Gintarė Ašmontaitė",
+        "first_name": "Gintarė",
+        "last_name": "Ašmontaitė",
+        "city": "Kaunas",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Sprinto distancija",
+        "distance_code": "sd",
+        "payed": false,
+        "price": 86,
         "_stage_id": 141
       },
       {
@@ -1402,7 +1414,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 67,
         "_stage_id": 141
       },
       {
@@ -1414,7 +1426,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 38,
         "_stage_id": 141
       },
       {
@@ -1426,7 +1438,7 @@
         "distance_name": "Vaikų distancija",
         "distance_code": "vaikai",
         "payed": true,
-        "price": "15.00",
+        "price": 29,
         "_stage_id": 141
       },
       {
@@ -1438,7 +1450,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 31,
         "_stage_id": 141
       },
       {
@@ -1450,7 +1462,7 @@
         "distance_name": "Mažųjų Splash&Run",
         "distance_code": "splash",
         "payed": true,
-        "price": "0.00",
+        "price": 86,
         "_stage_id": 141
       },
       {
@@ -1462,7 +1474,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 65,
         "_stage_id": 141
       },
       {
@@ -1474,7 +1486,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 68,
         "_stage_id": 141
       },
       {
@@ -1486,7 +1498,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 14,
         "_stage_id": 141
       },
       {
@@ -1498,7 +1510,7 @@
         "distance_name": "TRIFUN distancija",
         "distance_code": "trifun",
         "payed": true,
-        "price": "20.00",
+        "price": 33,
         "_stage_id": 141
       },
       {
@@ -1510,7 +1522,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 10,
         "_stage_id": 141
       },
       {
@@ -1522,19 +1534,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
-        "_stage_id": 141
-      },
-      {
-        "displayName": "Martynas Mickus",
-        "first_name": "Martynas",
-        "last_name": "Mickus",
-        "city": "Kaunas",
-        "club": "HighPeaks Lietuva",
-        "distance_name": "Olimpinė distancija",
-        "distance_code": "od",
-        "payed": false,
-        "price": "45.00",
+        "price": 21,
         "_stage_id": 141
       },
       {
@@ -1546,7 +1546,19 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 94,
+        "_stage_id": 141
+      },
+      {
+        "displayName": "Martynas Mickus",
+        "first_name": "Martynas",
+        "last_name": "Mickus",
+        "city": "Kaunas",
+        "club": "HighPeaks Lietuva",
+        "distance_name": "Olimpinė distancija",
+        "distance_code": "od",
+        "payed": false,
+        "price": 82,
         "_stage_id": 141
       },
       {
@@ -1558,7 +1570,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 47,
         "_stage_id": 141
       },
       {
@@ -1570,7 +1582,7 @@
         "distance_name": "Mažųjų Splash&Run",
         "distance_code": "splash",
         "payed": true,
-        "price": "0.00",
+        "price": 14,
         "_stage_id": 141
       },
       {
@@ -1582,7 +1594,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 93,
         "_stage_id": 141
       },
       {
@@ -1594,7 +1606,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 19,
         "_stage_id": 141
       },
       {
@@ -1606,7 +1618,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 68,
         "_stage_id": 141
       },
       {
@@ -1618,7 +1630,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 97,
         "_stage_id": 141
       },
       {
@@ -1630,7 +1642,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "55.00",
+        "price": 32,
         "_stage_id": 141
       },
       {
@@ -1642,7 +1654,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 85,
         "_stage_id": 141
       },
       {
@@ -1654,7 +1666,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 80,
         "_stage_id": 141
       },
       {
@@ -1666,7 +1678,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": true,
-        "price": "45.00",
+        "price": 51,
         "_stage_id": 141
       },
       {
@@ -1678,7 +1690,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": false,
-        "price": "45.00",
+        "price": 15,
         "_stage_id": 141
       },
       {
@@ -1690,7 +1702,7 @@
         "distance_name": "Vaikų distancija",
         "distance_code": "vaikai",
         "payed": true,
-        "price": "15.00",
+        "price": 48,
         "_stage_id": 141
       },
       {
@@ -1702,7 +1714,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "55.00",
+        "price": 16,
         "_stage_id": 141
       },
       {
@@ -1714,7 +1726,7 @@
         "distance_name": "Vaikų distancija",
         "distance_code": "vaikai",
         "payed": false,
-        "price": "15.00",
+        "price": 36,
         "_stage_id": 141
       },
       {
@@ -1726,7 +1738,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 94,
         "_stage_id": 141
       },
       {
@@ -1738,7 +1750,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 7,
         "_stage_id": 141
       },
       {
@@ -1750,7 +1762,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 29,
         "_stage_id": 141
       },
       {
@@ -1762,7 +1774,7 @@
         "distance_name": "Olimpinė distancija",
         "distance_code": "od",
         "payed": false,
-        "price": "45.00",
+        "price": 7,
         "_stage_id": 141
       },
       {
@@ -1774,7 +1786,7 @@
         "distance_name": "Sprinto distancija",
         "distance_code": "sd",
         "payed": true,
-        "price": "45.00",
+        "price": 68,
         "_stage_id": 141
       },
       {
@@ -1786,7 +1798,7 @@
         "distance_name": "Mažųjų Splash&Run",
         "distance_code": "splash",
         "payed": true,
-        "price": "0.00",
+        "price": 98,
         "_stage_id": 141
       }
     ]
