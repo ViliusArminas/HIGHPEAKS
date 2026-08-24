@@ -1245,11 +1245,11 @@
           "6345",
           "6626",
           "6727",
-          "0",
+          "7200",
           "0"
         ],
-        "total": "32955",
-        "participants": "96"
+        "total": "40155",
+        "participants": "116"
       },
       {
         "place": "2",
@@ -1260,11 +1260,11 @@
           "6041",
           "7083",
           "6749",
-          "0",
+          "6829",
           "0"
         ],
-        "total": "32540",
-        "participants": "125"
+        "total": "39369",
+        "participants": "146"
       },
       {
         "place": "3",
@@ -1275,11 +1275,11 @@
           "6986",
           "3684",
           "2780",
-          "0",
+          "6183",
           "0"
         ],
-        "total": "22261",
-        "participants": "47"
+        "total": "28444",
+        "participants": "56"
       },
       {
         "place": "4",
@@ -1290,11 +1290,11 @@
           "5114",
           "4568",
           "3296",
-          "0",
+          "2803",
           "0"
         ],
-        "total": "20421",
-        "participants": "61"
+        "total": "23224",
+        "participants": "69"
       },
       {
         "place": "5",
@@ -1305,11 +1305,11 @@
           "4393",
           "2473",
           "1458",
-          "0",
+          "4157",
           "0"
         ],
-        "total": "17895",
-        "participants": "55"
+        "total": "22052",
+        "participants": "63"
       },
       {
         "place": "6",
@@ -1320,11 +1320,11 @@
           "2571",
           "3720",
           "2740",
-          "0",
+          "3366",
           "0"
         ],
-        "total": "13160",
-        "participants": "20"
+        "total": "16526",
+        "participants": "25"
       },
       {
         "place": "7",
@@ -1335,29 +1335,14 @@
           "2122",
           "2326",
           "1475",
-          "0",
+          "1434",
           "0"
         ],
-        "total": "12118",
-        "participants": "20"
+        "total": "13552",
+        "participants": "22"
       },
       {
         "place": "8",
-        "club": "Marijampolės triatlono draugija",
-        "stage_points": [
-          "703",
-          "2102",
-          "2158",
-          "741",
-          "1438",
-          "0",
-          "0"
-        ],
-        "total": "7142",
-        "participants": "11"
-      },
-      {
-        "place": "9",
         "club": "Love Streams Running",
         "stage_points": [
           "1099",
@@ -1365,11 +1350,26 @@
           "2616",
           "2735",
           "572",
-          "0",
+          "2421",
           "0"
         ],
-        "total": "7022",
-        "participants": "12"
+        "total": "9443",
+        "participants": "16"
+      },
+      {
+        "place": "9",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "703",
+          "2102",
+          "2158",
+          "741",
+          "1438",
+          "1348",
+          "0"
+        ],
+        "total": "8490",
+        "participants": "13"
       },
       {
         "place": "10",
@@ -1380,11 +1380,11 @@
           "1833",
           "985",
           "0",
-          "0",
+          "1784",
           "0"
         ],
-        "total": "5716",
-        "participants": "6"
+        "total": "7500",
+        "participants": "8"
       }
     ]
   }
