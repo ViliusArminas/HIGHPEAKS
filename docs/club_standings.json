@@ -1,1 +1,1391 @@
-{}
+{
+  "2017": {
+    "stage_labels": [
+      "Tauragė (dalyviai)",
+      "Tauragė (taškai)",
+      "Zarasai (dalyviai)",
+      "Zarasai (taškai)",
+      "Jonava (dalyviai)",
+      "Jonava (taškai)",
+      "Veisiejai (dalyviai)",
+      "Veisiejai (taškai)",
+      "Druskininkai (dalyviai)",
+      "Druskininkai (taškai)"
+    ],
+    "clubs": [
+      {
+        "place": "3Club",
+        "club": "1",
+        "stage_points": [
+          "10",
+          "7643",
+          "16",
+          "11121",
+          "12",
+          "7636",
+          "19",
+          "11352",
+          "15",
+          "10311",
+          "72"
+        ],
+        "total": "48064",
+        "participants": "0"
+      },
+      {
+        "place": "Kauno maratono klubas",
+        "club": "2",
+        "stage_points": [
+          "4",
+          "2824",
+          "6",
+          "3978",
+          "12",
+          "7125",
+          "16",
+          "8793",
+          "18",
+          "10450",
+          "56"
+        ],
+        "total": "33171",
+        "participants": "0"
+      },
+      {
+        "place": "Panevėžio triatlono klubas",
+        "club": "3",
+        "stage_points": [
+          "1",
+          "708",
+          "13",
+          "7527",
+          "10",
+          "6476",
+          "11",
+          "6684",
+          "15",
+          "8581",
+          "50"
+        ],
+        "total": "29977",
+        "participants": "0"
+      },
+      {
+        "place": "Triathlon team Darna",
+        "club": "4",
+        "stage_points": [
+          "6",
+          "3518",
+          "8",
+          "4525",
+          "8",
+          "4315",
+          "9",
+          "4574",
+          "10",
+          "5535",
+          "41"
+        ],
+        "total": "22468",
+        "participants": "0"
+      },
+      {
+        "place": "Vilniaus triatlono asociacija",
+        "club": "5",
+        "stage_points": [
+          "6",
+          "3718",
+          "6",
+          "3818",
+          "6",
+          "4078",
+          "7",
+          "5097",
+          "5",
+          "3633",
+          "30"
+        ],
+        "total": "20344",
+        "participants": "0"
+      },
+      {
+        "place": "TRItonas",
+        "club": "6",
+        "stage_points": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "10",
+          "6358",
+          "10",
+          "4595",
+          "13",
+          "6641",
+          "33"
+        ],
+        "total": "17594",
+        "participants": "0"
+      },
+      {
+        "place": "ju2ju2",
+        "club": "7",
+        "stage_points": [
+          "3",
+          "2004",
+          "6",
+          "3208",
+          "5",
+          "2864",
+          "2",
+          "992",
+          "5",
+          "2864",
+          "21"
+        ],
+        "total": "11933",
+        "participants": "0"
+      },
+      {
+        "place": "Tauragės BMK",
+        "club": "8",
+        "stage_points": [
+          "9",
+          "5101",
+          "3",
+          "1985",
+          "2",
+          "1246",
+          "1",
+          "622",
+          "3",
+          "1785",
+          "18"
+        ],
+        "total": "10739",
+        "participants": "0"
+      },
+      {
+        "place": "F.O.C.U.S. running",
+        "club": "9",
+        "stage_points": [
+          "2",
+          "1552",
+          "4",
+          "3014",
+          "1",
+          "767",
+          "3",
+          "1849",
+          "4",
+          "2745",
+          "14"
+        ],
+        "total": "9927",
+        "participants": "0"
+      },
+      {
+        "place": "Šviesos kariai",
+        "club": "10",
+        "stage_points": [
+          "3",
+          "2131",
+          "2",
+          "1459",
+          "3",
+          "2166",
+          "2",
+          "1053",
+          "3",
+          "2173",
+          "13"
+        ],
+        "total": "8982",
+        "participants": "0"
+      }
+    ]
+  },
+  "2018": {
+    "stage_labels": [
+      "I Elektrėnai",
+      "II Tauragė",
+      "III Zarasai",
+      "IV Jonava",
+      "V Žasliai",
+      "VI Veisiejai"
+    ],
+    "clubs": [
+      {
+        "place": "1",
+        "club": "TRItonas",
+        "stage_points": [
+          "6065",
+          "7075",
+          "7126",
+          "7291",
+          "6829",
+          "7297"
+        ],
+        "total": "7555",
+        "participants": "49238"
+      },
+      {
+        "place": "2",
+        "club": "3Club",
+        "stage_points": [
+          "6311",
+          "7128",
+          "7059",
+          "7206",
+          "6497",
+          "7078"
+        ],
+        "total": "7186",
+        "participants": "48465"
+      },
+      {
+        "place": "3",
+        "club": "ORKOS",
+        "stage_points": [
+          "3492",
+          "4327",
+          "4937",
+          "4863",
+          "4424",
+          "3901"
+        ],
+        "total": "4518",
+        "participants": "30462"
+      },
+      {
+        "place": "4",
+        "club": "Runglorious Bastards-Sportland-SiS TriTeam",
+        "stage_points": [
+          "4123",
+          "3650",
+          "4516",
+          "4215",
+          "1338",
+          "4174"
+        ],
+        "total": "5531",
+        "participants": "27547"
+      },
+      {
+        "place": "5",
+        "club": "Velonova - Bioracer team",
+        "stage_points": [
+          "1777",
+          "2726",
+          "4289",
+          "3082",
+          "1769",
+          "5033"
+        ],
+        "total": "6118",
+        "participants": "24794"
+      },
+      {
+        "place": "6",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "2334",
+          "3861",
+          "4034",
+          "3923",
+          "970",
+          "3841"
+        ],
+        "total": "3274",
+        "participants": "22237"
+      },
+      {
+        "place": "7",
+        "club": "Kauno maratono klubas",
+        "stage_points": [
+          "2171",
+          "3234",
+          "2489",
+          "2273",
+          "592",
+          "4433"
+        ],
+        "total": "4057",
+        "participants": "19249"
+      },
+      {
+        "place": "8",
+        "club": "S-Sportas/Lietuvos kariuomenė",
+        "stage_points": [
+          "2258",
+          "2326",
+          "2275",
+          "2412",
+          "1811",
+          "2354"
+        ],
+        "total": "1481",
+        "participants": "14917"
+      },
+      {
+        "place": "9",
+        "club": "Panevėžio triatlono klubas",
+        "stage_points": [
+          "2223",
+          "2326",
+          "2128",
+          "2027",
+          "577",
+          "2231"
+        ],
+        "total": "2227",
+        "participants": "13739"
+      },
+      {
+        "place": "10",
+        "club": "Šviesos kariai",
+        "stage_points": [
+          "1441",
+          "1623",
+          "1727",
+          "1850",
+          "1078",
+          "1919"
+        ],
+        "total": "2828",
+        "participants": "12466"
+      }
+    ]
+  },
+  "2019": {
+    "stage_labels": [
+      "I Alytus",
+      "II Šilalė",
+      "III Varėna",
+      "IV Jonava",
+      "V Girdžiai",
+      "VI Veisiejai",
+      "VII Druskininkai"
+    ],
+    "clubs": [
+      {
+        "place": "1",
+        "club": "TRItonas",
+        "stage_points": [
+          "7722",
+          "7155",
+          "6786",
+          "7042",
+          "6734",
+          "6815",
+          "7314"
+        ],
+        "total": "49568",
+        "participants": "239"
+      },
+      {
+        "place": "2",
+        "club": "Kauno Triatlono Klubas",
+        "stage_points": [
+          "6852",
+          "6266",
+          "6749",
+          "6760",
+          "6647",
+          "6549",
+          "6908"
+        ],
+        "total": "46731",
+        "participants": "114"
+      },
+      {
+        "place": "3",
+        "club": "HighPeaks Lietuva",
+        "stage_points": [
+          "5562",
+          "5474",
+          "5573",
+          "5434",
+          "2148",
+          "4921",
+          "5442"
+        ],
+        "total": "34554",
+        "participants": "107"
+      },
+      {
+        "place": "4",
+        "club": "Velonova - Bioracer team",
+        "stage_points": [
+          "3642",
+          "4214",
+          "3432",
+          "3339",
+          "2565",
+          "3400",
+          "3399"
+        ],
+        "total": "23991",
+        "participants": "28"
+      },
+      {
+        "place": "5",
+        "club": "S-Sportas",
+        "stage_points": [
+          "3540",
+          "2489",
+          "3032",
+          "3816",
+          "1736",
+          "3279",
+          "3210"
+        ],
+        "total": "21102",
+        "participants": "32"
+      },
+      {
+        "place": "6",
+        "club": "3Club",
+        "stage_points": [
+          "2278",
+          "2472",
+          "4625",
+          "1725",
+          "1666",
+          "2051",
+          "2891"
+        ],
+        "total": "17708",
+        "participants": "24"
+      },
+      {
+        "place": "7",
+        "club": "Runglorious Bastards",
+        "stage_points": [
+          "1502",
+          "2891",
+          "2366",
+          "2044",
+          "0",
+          "1503",
+          "4367"
+        ],
+        "total": "14673",
+        "participants": "22"
+      },
+      {
+        "place": "8",
+        "club": "IKIGAI team",
+        "stage_points": [
+          "3744",
+          "2114",
+          "0",
+          "1958",
+          "1385",
+          "2748",
+          "2677"
+        ],
+        "total": "14626",
+        "participants": "22"
+      },
+      {
+        "place": "9",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "2885",
+          "2221",
+          "2005",
+          "1802",
+          "622",
+          "1917",
+          "2035"
+        ],
+        "total": "13487",
+        "participants": "27"
+      },
+      {
+        "place": "10",
+        "club": "ORKOS",
+        "stage_points": [
+          "1417",
+          "1333",
+          "1779",
+          "1720",
+          "1499",
+          "1258",
+          "3651"
+        ],
+        "total": "12657",
+        "participants": "23"
+      }
+    ]
+  },
+  "2020": {
+    "stage_labels": [
+      "I Varėna",
+      "II Jonava",
+      "III Skaudvilė",
+      "IV Veisiejai",
+      "V Druskininkai"
+    ],
+    "clubs": [
+      {
+        "place": "1",
+        "club": "TRItonas",
+        "stage_points": [
+          "7907",
+          "7664",
+          "7470",
+          "7650",
+          "7708"
+        ],
+        "total": "38399",
+        "participants": "180"
+      },
+      {
+        "place": "2",
+        "club": "Kauno Triatlono Klubas",
+        "stage_points": [
+          "7049",
+          "5870",
+          "7120",
+          "5897",
+          "6720"
+        ],
+        "total": "32656",
+        "participants": "90"
+      },
+      {
+        "place": "3",
+        "club": "HighPeaks Lietuva",
+        "stage_points": [
+          "6239",
+          "6265",
+          "5154",
+          "6773",
+          "7040"
+        ],
+        "total": "31471",
+        "participants": "148"
+      },
+      {
+        "place": "4",
+        "club": "BTT Cloud",
+        "stage_points": [
+          "5362",
+          "5745",
+          "5711",
+          "6951",
+          "6297"
+        ],
+        "total": "30066",
+        "participants": "57"
+      },
+      {
+        "place": "5",
+        "club": "S-SPORTAS",
+        "stage_points": [
+          "3717",
+          "4490",
+          "3879",
+          "4308",
+          "2943"
+        ],
+        "total": "19337",
+        "participants": "34"
+      },
+      {
+        "place": "6",
+        "club": "Trakų Triatlono Būrelis",
+        "stage_points": [
+          "2164",
+          "2698",
+          "3272",
+          "2908",
+          "4621"
+        ],
+        "total": "15663",
+        "participants": "41"
+      },
+      {
+        "place": "7",
+        "club": "Panevėžio triatlono klubas",
+        "stage_points": [
+          "2595",
+          "3335",
+          "2619",
+          "3485",
+          "3474"
+        ],
+        "total": "15508",
+        "participants": "38"
+      },
+      {
+        "place": "8",
+        "club": "Runglorious Bastards",
+        "stage_points": [
+          "3197",
+          "3493",
+          "2359",
+          "2731",
+          "3087"
+        ],
+        "total": "14867",
+        "participants": "30"
+      },
+      {
+        "place": "9",
+        "club": "Triatletas",
+        "stage_points": [
+          "1527",
+          "3744",
+          "2237",
+          "2873",
+          "3700"
+        ],
+        "total": "14081",
+        "participants": "19"
+      },
+      {
+        "place": "10",
+        "club": "Velonova - Bioracer team",
+        "stage_points": [
+          "2880",
+          "2384",
+          "2392",
+          "2309",
+          "1867"
+        ],
+        "total": "11832",
+        "participants": "15"
+      }
+    ]
+  },
+  "2021": {
+    "stage_labels": [
+      "I Alytus",
+      "II Varėna",
+      "III Jonava",
+      "IV Veisiejai",
+      "V Druskininkai"
+    ],
+    "clubs": [
+      {
+        "place": "1",
+        "club": "TRItonas",
+        "stage_points": [
+          "7457",
+          "7296",
+          "7006",
+          "7224",
+          "7501"
+        ],
+        "total": "36484",
+        "participants": "119"
+      },
+      {
+        "place": "2",
+        "club": "HighPeaks Lietuva",
+        "stage_points": [
+          "6463",
+          "7090",
+          "6334",
+          "7261",
+          "6155"
+        ],
+        "total": "33303",
+        "participants": "120"
+      },
+      {
+        "place": "3",
+        "club": "BTT Cloud",
+        "stage_points": [
+          "6669",
+          "6158",
+          "5544",
+          "6882",
+          "7069"
+        ],
+        "total": "32322",
+        "participants": "76"
+      },
+      {
+        "place": "4",
+        "club": "Kauno Triatlono Klubas",
+        "stage_points": [
+          "5921",
+          "5874",
+          "6199",
+          "6982",
+          "7065"
+        ],
+        "total": "32041",
+        "participants": "82"
+      },
+      {
+        "place": "5",
+        "club": "Panevėžio triatlono klubas",
+        "stage_points": [
+          "3720",
+          "4287",
+          "2803",
+          "4328",
+          "4270"
+        ],
+        "total": "19408",
+        "participants": "35"
+      },
+      {
+        "place": "6",
+        "club": "IKIGAI team",
+        "stage_points": [
+          "3626",
+          "4379",
+          "3510",
+          "3793",
+          "3337"
+        ],
+        "total": "18645",
+        "participants": "48"
+      },
+      {
+        "place": "7",
+        "club": "Team Ignite",
+        "stage_points": [
+          "3831",
+          "3913",
+          "3712",
+          "3933",
+          "2996"
+        ],
+        "total": "18385",
+        "participants": "33"
+      },
+      {
+        "place": "8",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "2904",
+          "4471",
+          "1260",
+          "4390",
+          "4396"
+        ],
+        "total": "17421",
+        "participants": "27"
+      },
+      {
+        "place": "9",
+        "club": "Trakų triatlono būrelis",
+        "stage_points": [
+          "3192",
+          "2856",
+          "3210",
+          "3240",
+          "4084"
+        ],
+        "total": "16582",
+        "participants": "52"
+      },
+      {
+        "place": "10",
+        "club": "Runglorious Bastards",
+        "stage_points": [
+          "1250",
+          "3285",
+          "2702",
+          "3143",
+          "3461"
+        ],
+        "total": "13841",
+        "participants": "26"
+      }
+    ]
+  },
+  "2023": {
+    "stage_labels": [
+      "I Kaišiadorys",
+      "II Trakai",
+      "III Jonava",
+      "IV Veisiejai",
+      "V Druskininkai"
+    ],
+    "clubs": [
+      {
+        "place": "1",
+        "club": "TRItonas",
+        "stage_points": [
+          "7247",
+          "5940",
+          "7374",
+          "6005",
+          "6834"
+        ],
+        "total": "33400",
+        "participants": "83"
+      },
+      {
+        "place": "2",
+        "club": "Highpeaks Lietuva",
+        "stage_points": [
+          "5064",
+          "6108",
+          "5887",
+          "5890",
+          "6117"
+        ],
+        "total": "29066",
+        "participants": "93"
+      },
+      {
+        "place": "3",
+        "club": "BTT",
+        "stage_points": [
+          "4377",
+          "6723",
+          "3060",
+          "4538",
+          "5060"
+        ],
+        "total": "23758",
+        "participants": "47"
+      },
+      {
+        "place": "4",
+        "club": "Klaipėdos Triatlono Klubas",
+        "stage_points": [
+          "4466",
+          "4538",
+          "4233",
+          "3731",
+          "5921"
+        ],
+        "total": "22889",
+        "participants": "64"
+      },
+      {
+        "place": "5",
+        "club": "Kauno Triatlono Klubas",
+        "stage_points": [
+          "5572",
+          "4374",
+          "3609",
+          "2887",
+          "6171"
+        ],
+        "total": "22613",
+        "participants": "43"
+      },
+      {
+        "place": "6",
+        "club": "Trakų Triatlono Būrelis",
+        "stage_points": [
+          "4029",
+          "4455",
+          "3442",
+          "2202",
+          "3760"
+        ],
+        "total": "17888",
+        "participants": "33"
+      },
+      {
+        "place": "7",
+        "club": "S-Sportas",
+        "stage_points": [
+          "3169",
+          "2057",
+          "3997",
+          "4053",
+          "4106"
+        ],
+        "total": "17382",
+        "participants": "28"
+      },
+      {
+        "place": "8",
+        "club": "Team Ignite",
+        "stage_points": [
+          "3764",
+          "1509",
+          "2553",
+          "3455",
+          "2700"
+        ],
+        "total": "13981",
+        "participants": "30"
+      },
+      {
+        "place": "9",
+        "club": "Love Streams Running",
+        "stage_points": [
+          "1533",
+          "3978",
+          "3792",
+          "1902",
+          "2407"
+        ],
+        "total": "13612",
+        "participants": "31"
+      },
+      {
+        "place": "10",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "1302",
+          "2045",
+          "2882",
+          "2905",
+          "2580"
+        ],
+        "total": "11714",
+        "participants": "21"
+      }
+    ]
+  },
+  "2024": {
+    "stage_labels": [
+      "I Kaišiadorys",
+      "II Trakai",
+      "III Jonava",
+      "IV Veisiejai",
+      "V Druskininkai"
+    ],
+    "clubs": [
+      {
+        "place": "1",
+        "club": "TRItonas",
+        "stage_points": [
+          "5848",
+          "7388",
+          "5484",
+          "5322",
+          "7918"
+        ],
+        "total": "31960",
+        "participants": "97"
+      },
+      {
+        "place": "2",
+        "club": "HighPeaks Lietuva",
+        "stage_points": [
+          "6334",
+          "6979",
+          "6838",
+          "5784",
+          "5810"
+        ],
+        "total": "31745",
+        "participants": "142"
+      },
+      {
+        "place": "3",
+        "club": "Klaipėdos Triatlono Klubas",
+        "stage_points": [
+          "4478",
+          "6493",
+          "4432",
+          "4749",
+          "5509"
+        ],
+        "total": "25661",
+        "participants": "64"
+      },
+      {
+        "place": "4",
+        "club": "BTT",
+        "stage_points": [
+          "5243",
+          "5716",
+          "4251",
+          "3423",
+          "4779"
+        ],
+        "total": "23412",
+        "participants": "60"
+      },
+      {
+        "place": "5",
+        "club": "Kauno Triatlono Klubas",
+        "stage_points": [
+          "3708",
+          "4365",
+          "5286",
+          "3178",
+          "6056"
+        ],
+        "total": "22593",
+        "participants": "34"
+      },
+      {
+        "place": "6",
+        "club": "Love Streams Running",
+        "stage_points": [
+          "2190",
+          "3850",
+          "3182",
+          "2917",
+          "3503"
+        ],
+        "total": "15642",
+        "participants": "43"
+      },
+      {
+        "place": "7",
+        "club": "Trakų Triatlono Būrelis",
+        "stage_points": [
+          "2616",
+          "4643",
+          "2695",
+          "2927",
+          "2616"
+        ],
+        "total": "15497",
+        "participants": "22"
+      },
+      {
+        "place": "8",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "1332",
+          "1709",
+          "2609",
+          "3354",
+          "3595"
+        ],
+        "total": "12599",
+        "participants": "22"
+      },
+      {
+        "place": "9",
+        "club": "Team Ignite",
+        "stage_points": [
+          "3194",
+          "757",
+          "3712",
+          "938",
+          "3088"
+        ],
+        "total": "11689",
+        "participants": "22"
+      },
+      {
+        "place": "10",
+        "club": "S-Sportas",
+        "stage_points": [
+          "2390",
+          "822",
+          "895",
+          "1777",
+          "4019"
+        ],
+        "total": "9903",
+        "participants": "13"
+      }
+    ]
+  },
+  "2025": {
+    "stage_labels": [
+      "I Kaišiadorys",
+      "II Trakai",
+      "III Jonava",
+      "IV Veisiejai",
+      "V Druskininkai"
+    ],
+    "clubs": [
+      {
+        "place": "1",
+        "club": "TRItonas",
+        "stage_points": [
+          "5072",
+          "7306",
+          "4867",
+          "7047",
+          "7100"
+        ],
+        "total": "31392",
+        "participants": "95"
+      },
+      {
+        "place": "2",
+        "club": "HighPeaks Lietuva",
+        "stage_points": [
+          "5457",
+          "5703",
+          "5676",
+          "6233",
+          "5845"
+        ],
+        "total": "28914",
+        "participants": "119"
+      },
+      {
+        "place": "3",
+        "club": "Kauno Triatlono Klubas",
+        "stage_points": [
+          "5155",
+          "5360",
+          "5045",
+          "5646",
+          "6019"
+        ],
+        "total": "27225",
+        "participants": "53"
+      },
+      {
+        "place": "4",
+        "club": "BTT",
+        "stage_points": [
+          "4013",
+          "5579",
+          "4216",
+          "4096",
+          "5178"
+        ],
+        "total": "23082",
+        "participants": "50"
+      },
+      {
+        "place": "5",
+        "club": "Klaipėdos Triatlono Klubas",
+        "stage_points": [
+          "4356",
+          "5938",
+          "3229",
+          "2451",
+          "4312"
+        ],
+        "total": "20286",
+        "participants": "52"
+      },
+      {
+        "place": "6",
+        "club": "Zoomies",
+        "stage_points": [
+          "3695",
+          "4445",
+          "3370",
+          "2398",
+          "3148"
+        ],
+        "total": "17056",
+        "participants": "39"
+      },
+      {
+        "place": "7",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "3022",
+          "3961",
+          "1343",
+          "4155",
+          "2942"
+        ],
+        "total": "15423",
+        "participants": "25"
+      },
+      {
+        "place": "8",
+        "club": "S-Sportas",
+        "stage_points": [
+          "4026",
+          "3070",
+          "1424",
+          "3847",
+          "2303"
+        ],
+        "total": "14670",
+        "participants": "23"
+      },
+      {
+        "place": "9",
+        "club": "Trakų Triatlono Būrelis",
+        "stage_points": [
+          "1956",
+          "3665",
+          "2569",
+          "997",
+          "2554"
+        ],
+        "total": "11741",
+        "participants": "16"
+      },
+      {
+        "place": "10",
+        "club": "Lietuvos kariuomenė",
+        "stage_points": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "5134"
+        ],
+        "total": "11421",
+        "participants": "19"
+      }
+    ]
+  },
+  "2026": {
+    "stage_labels": [
+      "I Kaišiadorys",
+      "II Veisiejai",
+      "III Trakai",
+      "IV Jonava",
+      "V Skaudvilė",
+      "VI Molėtai",
+      "VII Druskininkai"
+    ],
+    "clubs": [
+      {
+        "place": "1",
+        "club": "TRItonas",
+        "stage_points": [
+          "7179",
+          "6078",
+          "6345",
+          "6626",
+          "6727",
+          "7200",
+          "0"
+        ],
+        "total": "40155",
+        "participants": "116"
+      },
+      {
+        "place": "2",
+        "club": "HighPeaks Lietuva",
+        "stage_points": [
+          "6274",
+          "6393",
+          "6041",
+          "7083",
+          "6749",
+          "6829",
+          "0"
+        ],
+        "total": "39369",
+        "participants": "146"
+      },
+      {
+        "place": "3",
+        "club": "BTT",
+        "stage_points": [
+          "5097",
+          "3714",
+          "6986",
+          "3684",
+          "2780",
+          "6183",
+          "0"
+        ],
+        "total": "28444",
+        "participants": "56"
+      },
+      {
+        "place": "4",
+        "club": "Klaipėdos Triatlono Klubas",
+        "stage_points": [
+          "4100",
+          "3343",
+          "5114",
+          "4568",
+          "3296",
+          "2803",
+          "0"
+        ],
+        "total": "23224",
+        "participants": "69"
+      },
+      {
+        "place": "5",
+        "club": "zoomies",
+        "stage_points": [
+          "4857",
+          "4714",
+          "4393",
+          "2473",
+          "1458",
+          "4157",
+          "0"
+        ],
+        "total": "22052",
+        "participants": "63"
+      },
+      {
+        "place": "6",
+        "club": "Kauno Triatlono Klubas",
+        "stage_points": [
+          "2317",
+          "1812",
+          "2571",
+          "3720",
+          "2740",
+          "3366",
+          "0"
+        ],
+        "total": "16526",
+        "participants": "25"
+      },
+      {
+        "place": "7",
+        "club": "S-Sportas",
+        "stage_points": [
+          "3154",
+          "3041",
+          "2122",
+          "2326",
+          "1475",
+          "1434",
+          "0"
+        ],
+        "total": "13552",
+        "participants": "22"
+      },
+      {
+        "place": "8",
+        "club": "Love Streams Running",
+        "stage_points": [
+          "1099",
+          "0",
+          "2616",
+          "2735",
+          "572",
+          "2421",
+          "0"
+        ],
+        "total": "9443",
+        "participants": "16"
+      },
+      {
+        "place": "9",
+        "club": "Marijampolės triatlono draugija",
+        "stage_points": [
+          "703",
+          "2102",
+          "2158",
+          "741",
+          "1438",
+          "1348",
+          "0"
+        ],
+        "total": "8490",
+        "participants": "13"
+      },
+      {
+        "place": "10",
+        "club": "Trakų sporto centras",
+        "stage_points": [
+          "1000",
+          "1898",
+          "1833",
+          "985",
+          "0",
+          "1784",
+          "0"
+        ],
+        "total": "7500",
+        "participants": "8"
+      }
+    ]
+  }
+}
